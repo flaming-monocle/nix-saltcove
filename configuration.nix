@@ -5,18 +5,15 @@
     networkmanager.enable = true;
     firewall.enable = true;
   };
-
-  # Users
-  users.users.kobi = {
-    isNormalUser = true;
-    description = "Kobi";
-    extraGroups = [ "networkmanager" "wheel" ];
-    initialPassword = "test";
-  };
-
+    
   environment.systemPackages = with pkgs; [
-    cowsay
+    vim
+    git
   ];
+
+  nix.settings.experimental-features = "nix-command flakes";
+
+  services.openssh.enable = true;
 
   system.stateVersion = "25.11"; # DO NOT MODIFY
 }
