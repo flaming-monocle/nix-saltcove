@@ -4,9 +4,24 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ 
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ./configuration.nix
+  ];
+
+  networking.hostName = "snowblack";
+
+  # Boot options
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [ "usbcore.autosuspend=-1" ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
+
+  # -- SYSTEM GENERATED --
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
