@@ -2,6 +2,7 @@
 {
   # -- Universal Settings --
 
+  # Packages
   environment.systemPackages = with pkgs; [
     linux-firmware
     dconf-editor
@@ -20,13 +21,6 @@
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Home Manager
-  home-manager = {
-    useUserPackages = true;
-    #useGlobalPkgs = true; # Appears to throw an error during rebuild-switch
-    backupFileExtension = "backup";
-  };
-  
   # System Settings
   environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
   nixpkgs.config.allowUnfree = true;

@@ -39,6 +39,19 @@ let
       end
     '';
 
+  projectRestore.__raw = ''
+      function()
+         vim.cmd("Telescope projects")
+         require("persistence").load()
+      end
+    '';
+
+  lastRestore.__raw = ''
+      function()
+        require("persistence").load()
+      end
+    '';
+
   button = shortcut: desc: action: {
     type = "button";
     val = desc;
@@ -144,6 +157,7 @@ in
           {
             type = "group";
             val = [
+              (button "R" "󰑓   Restore Last" lastRestore)
               (button "n" "   New File" "ene | startinsert")
               (button "r" "   Recent Files" "Telescope oldfiles")
               (button "f" "   Find File" "Telescope find_files")
@@ -156,13 +170,12 @@ in
               (button "h" "󱘟  Grep Vault" obsidianGrep)
               { type = "padding"; val = 1; }
               #(button "x" "  NixOS" #TODO)
-              (button "p" "  Projects" "Telescope projects")
+              (button "p" "󱓧   Projects" "Telescope projects")
+              (button "[" "󱓵   Restore Project" projectRestore)
               { type = "padding"; val = 1; }
               (button "m" "  Keymaps" "Telescope keymaps")
               (button "i" "  LSP Info" "LspInfo")
               (button "q" "󰅙  Quit" "qa")
-              #git branches
-              #git status
             ];
           }
           { type = "padding"; val = 3; }
