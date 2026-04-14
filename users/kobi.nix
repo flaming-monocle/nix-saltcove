@@ -25,6 +25,7 @@
         ./../homeModules/obs.nix
         ./../homeModules/rofi.nix
         ./../homeModules/starship.nix
+        ./../homeModules/thunar.nix
         ./../homeModules/waybar.nix
         ./../homeModules/zsh.nix
       ];
@@ -58,6 +59,7 @@
       transmission_4
       gimp
       libreoffice-qt
+      font-manager
     ];
   };
 }

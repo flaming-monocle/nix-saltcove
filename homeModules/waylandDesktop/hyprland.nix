@@ -28,6 +28,7 @@ in
   };
   
   imports = [
+    ./wayland.nix
     ./hyprland-modules/scrolling.nix
     #./hyprland-modules/dwindle.nix
   ];

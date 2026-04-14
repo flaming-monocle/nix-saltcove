@@ -36,6 +36,15 @@
   environment.variables.EDITOR = "nvim";
   environment.variables.SUDO_EDITOR = "nvim";
 
+  # Fonts
+  fonts = {
+    fontDir.enable = true;
+    packages = with pkgs; [
+      nerd-fonts.hack
+      nerd-fonts.jetbrains-mono
+    ];
+  };
+
 	# Garbage Collection
 	nix.gc = {
 		automatic = true;

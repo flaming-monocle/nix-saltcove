@@ -3,8 +3,8 @@ let
   kver = config.boot.kernelPackages.kernel.version;
 in
 {
-  # github: NixOS/nixos-hardware
-  # .../common/cpu/amd-cpu
+  # Source: github:NixOS/nixos-hardware
+  # src/common/cpu/amd-cpu
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   
   boot = lib.mkMerge [
@@ -20,8 +20,16 @@ in
     })
   ];
 
-  # .../common/gpu/nvidia-gpu
+  # src/common/gpu/nvidia-gpu
   services.xserver.videoDrivers = lib.mkDefault ["nvidia" ];
+
+  # Custom: nvidia-gpu
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    modesetting.enable = true;
+    nvidiaPersistenced = true;
+    open = false;
+  };
 
   # src/common/pc/ssd
   services.fstrim.enable = lib.mkDefault true;
