@@ -1,9 +1,39 @@
 { config, pkgs, lib, ... }:
 {
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      ll = "${pkgs.coreutils}/bin/ls -al";
-    };
+  # -- Unified settings for all users across all hosts --
+  
+  # Potentially unnecessary for use in Wayland
+  xresources.properties = {
+    "Xcursor.size" = 16;
+    "Xft.dpi" = 172;
   };
+
+  home.packages = with pkgs; [
+    # Archives and Formats
+    zip
+    unzip
+    rar
+    p7zip
+    gnutar
+    ffmpeg
+
+    # CLU utils
+    gnugrep
+    ripgrep
+    fzf
+    wget
+    ranger
+    killall
+    file
+    which
+    tree
+
+    # Monitoring
+    btop
+    iotop
+    iftop
+    lsof
+    pciutils
+    usbutils
+  ];
 }
