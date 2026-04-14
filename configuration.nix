@@ -1,8 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   # -- Universal Settings --
 
-  # Packages for all hosts
   environment.systemPackages = with pkgs; [
     linux-firmware
     dconf-editor
@@ -11,24 +10,24 @@
     git
   ];
   
-  # Networking for all hosts
+  # Networking
   networking = {
     networkmanager.enable = true;
     firewall.enable = true;
   };
 
-  # Locale for all hosts
+  # Locale
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Home Manager for all hosts
+  # Home Manager
   home-manager = {
     useUserPackages = true;
-    useGlobalPkgs = true;
+    #useGlobalPkgs = true; # Appears to throw an error during rebuild-switch
     backupFileExtension = "backup";
   };
   
-  # System-wide Settings
+  # System Settings
   environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowInsecure = true;

@@ -18,17 +18,21 @@
         ./../homeModules/waylandDesktop/kde-plasma.nix
         ./../homeModules/gaming.nix
         ./../homeModules/kitty.nix
+        ./../homeModules/nixvim
         ./../homeModules/starship.nix
         ./../homeModules/zsh.nix
-        ./../homeModules/nixvim
       ];
     };
 
     home.stateVersion = "25.11";
   };
 
-  home.packages = with pkgs; [
-    # Packages for Carlisle across all hosts:
-    gimp
-  ];
+  home = {
+    username = "carlisle";
+    homedirectory = "/home/carlisle";
+    packages = with pkgs; [
+      # Packages for Carlisle across all hosts:
+      gimp
+    ];
+  };
 }

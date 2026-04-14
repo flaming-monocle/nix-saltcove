@@ -7,7 +7,7 @@
       description = "Kobi";
       extraGroups = [ "networkmanager" "wheel" ];
       initialPassword = "9231";
-      shell = pkgs.zsh; # TODO declare zsh config
+      shell = pkgs.zsh;
     };
   };
 
@@ -27,9 +27,7 @@
         ./../homeModules/starship.nix
         ./../homeModules/waybar.nix
         ./../homeModules/zsh.nix
-        
       ];
-
       programs.git = {
         enable = true;
         settings = {
