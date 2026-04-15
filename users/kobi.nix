@@ -28,6 +28,7 @@
         ./../homeModules/thunar.nix
         ./../homeModules/waybar.nix
         ./../homeModules/zsh.nix
+        ./../homeModules/gimp.nix
       ];
       programs.git = {
         enable = true;
@@ -43,19 +44,21 @@
         };
       };
     };
-    home.stateVersion = "25.11";
+    home =  {
+      stateVersion = "25.11";
+      username = "kobi";
+      directory = "/home/kobi";
+      packages = with pkgs; [
+        freecad
+        thunderbird
+        obsidian
+        shotcut
+        audacity
+        reaper
+        transmission_4
+        libreoffice-qt
+        font-manager
+      ];
+    };
   };
-
-  home.packages = with pkgs; [
-    freecad
-    thunderbird
-    obsidian
-    shotcut
-    audacity
-    reaper
-    transmission_4
-    gimp
-    libreoffice-qt
-    font-manager
-  ];
 }
