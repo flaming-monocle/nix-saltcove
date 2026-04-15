@@ -8,7 +8,7 @@
     stylix.url = "github:nix-community/stylix";
   };
 
-  outputs = { self, nixpkgs, home-manager }@inputs:
+  outputs = inputs@{ self, nixpkgs, home-manager, stylix, nixvim, ... }:
     let
       system = "x86_64-linux";
       specialArgs = inputs // { inherit system; };

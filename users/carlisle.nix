@@ -2,7 +2,7 @@
 {
   # Unified settings per-user across hosts
   users.users = {
-    saltServer = {
+    carlisle = {
       isNormalUser = true;
       description = "carlisle";
       extraGroups = [ "networkmanager" "wheel" ];
@@ -27,12 +27,8 @@
     home.stateVersion = "25.11";
   };
 
-  home = {
-    username = "carlisle";
-    homedirectory = "/home/carlisle";
-    packages = with pkgs; [
-      # Packages for Carlisle across all hosts:
-      gimp
-    ];
-  };
+  home.packages = with pkgs; [
+    # Packages for Carlisle across all hosts:
+    gimp
+  ];
 }

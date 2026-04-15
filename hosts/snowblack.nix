@@ -14,6 +14,12 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    pavucontrol
+    pamixer
+    alsa-plugins
+    alsa-utils
+    scarlett2
+    alsa-scarlett-gui
     openrgb-with-all-plugins
   ];
 
@@ -65,14 +71,4 @@
   boot.extraModprobeConfig = ''
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
   '';
-
-  environment.systemPackages = with pkgs; [
-    pavucontrol
-    pamixer
-    alsa-plugins
-    alsa-utils
-
-    scarlett2
-    alsa-scarlett-gui
-  ];
 }

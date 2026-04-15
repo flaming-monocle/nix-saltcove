@@ -46,20 +46,16 @@
     home.stateVersion = "25.11";
   };
 
-  home = {
-    username = "kobi";
-    homeDirectory = "/home/kobi";
-    packages = with pkgs; [
-      freecad
-      thunderbird
-      obsidian
-      shotcut
-      audacity
-      reaper
-      transmission_4
-      gimp
-      libreoffice-qt
-      font-manager
-    ];
-  };
+  home.packages = with pkgs; [
+    freecad
+    thunderbird
+    obsidian
+    shotcut
+    audacity
+    reaper
+    transmission_4
+    gimp
+    libreoffice-qt
+    font-manager
+  ];
 }
