@@ -193,4 +193,5 @@ in
       };
     };
   };
+  services.gvfs.enable = true; # file shortcuts in hyprctl dash
 }
