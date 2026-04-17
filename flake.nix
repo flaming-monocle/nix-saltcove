@@ -3,12 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
-    nixvim.url = "github:nix-community/nixvim/main";
-    stylix.url = "github:nix-community/stylix";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixvim = {
+      url = "github:nix-community/nixvim/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, stylix, nixvim, ... }:
+  outputs = { self, nixpkgs, home-manager, stylix, nixvim, ... }@inputs:
     let
       system = "x86_64-linux";
       specialArgs = inputs // { inherit system; };

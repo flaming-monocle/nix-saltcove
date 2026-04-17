@@ -25,13 +25,13 @@
       ];
     };
 
-    home = {
-      stateVersion = "25.11";
-      username = "carlisle";
-      directory = "/home/carlisle";
-      packages = with pkgs; [
-        # Packages for Carlisle across all hosts:
-      ];
-    };
+    #home = {
+    #  stateVersion = "25.11";
+    #  username = "carlisle";
+    #  directory = "/home/carlisle";
+    #  packages = with pkgs; [
+    #    # Packages for Carlisle across all hosts:
+    #  ];
+    #};
   };
 }

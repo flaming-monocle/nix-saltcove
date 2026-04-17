@@ -28,7 +28,6 @@ in
   };
   
   imports = [
-    ./wayland.nix
     ./hyprland-modules/scrolling.nix
     #./hyprland-modules/dwindle.nix
   ];
@@ -75,6 +74,7 @@ in
   				#"$mod, CAPS, exec, $terminal" # TODO work on this
   				"$mod, Q, killactive"
   				"$mod, R, exec, $fileManager"
+          ''$mod, V, exec, $terminal -e "vim"''
   				"$mod, F, exec, firefox"
   				"$mod, D, exec, $menu -show drun"
   				"$mod, O, exec, obsidian"

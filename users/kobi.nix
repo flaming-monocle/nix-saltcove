@@ -15,6 +15,15 @@
     users.kobi = {
       imports = [
         ./../home.nix
+        ./../homeModules/audacity.nix
+        ./../homeModules/font-manager.nix
+        ./../homeModules/freecad.nix
+        ./../homeModules/libreoffice.nix
+        ./../homeModules/obsidian.nix
+        ./../homeModules/reaper.nix
+        ./../homeModules/shotcut.nix
+        ./../homeModules/thunderbird.nix
+        ./../homeModules/transmission.nix
         ./../homeModules/gaming.nix
         ./../homeModules/waylandDesktop/hyprland.nix
         ./../homeModules/hyprpaper.nix
@@ -43,22 +52,6 @@
         init.defaultBranch = "main";
         };
       };
-    };
-    home =  {
-      stateVersion = "25.11";
-      username = "kobi";
-      directory = "/home/kobi";
-      packages = with pkgs; [
-        freecad
-        thunderbird
-        obsidian
-        shotcut
-        audacity
-        reaper
-        transmission_4
-        libreoffice-qt
-        font-manager
-      ];
     };
   };
 }

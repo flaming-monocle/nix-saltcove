@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   # -- Universal Settings --
+  imports = [
+    ./config/wayland.nix
+  ];
 
   # Packages
   environment.systemPackages = with pkgs; [
@@ -29,6 +32,7 @@
   nix.settings.download-buffer-size = 262144000; # 250MB
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   security.polkit.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; # Forces Wayland for transparency reasons 
 
   # Default Programs
   programs.dconf.enable = true;

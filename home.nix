@@ -36,4 +36,6 @@
     pciutils
     usbutils
   ];
+
+  home.stateVersion = "25.11";
 }
