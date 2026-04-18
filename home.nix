@@ -1,7 +1,7 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   # -- Unified settings for all users across all hosts --
-  
+
   # Potentially unnecessary for use in Wayland
   xresources.properties = {
     "Xcursor.size" = 16;

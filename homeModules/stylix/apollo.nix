@@ -1,12 +1,11 @@
-# stylix/apollo.nix
-{ config, pkgs, inputs, ... }:
+{ config, ... }:
 let 
   colors = config.custom.colorscheme.apollo;
 in
 {
   imports = [
-    inputs.stylix.homeModules.stylix
-    ./../colors/apollo.nix
+    # inputs.stylix.homeModules.stylix
+    ./../../colorschemes/apollo.nix
   ];
 
   stylix.base16Scheme = {

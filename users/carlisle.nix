@@ -1,19 +1,22 @@
 { pkgs, ... }:
 {
   # Unified settings per-user across hosts
+
   users.users = {
     carlisle = {
       isNormalUser = true;
       description = "carlisle";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" ]; 
       initialPassword = "firewillow";
       shell = pkgs.zsh;
     };
   };
+  programs.zsh.enable = true;
 
   home-manager = {
-    users.carlisle = {
+    users.carlisle = { stylix, ... }: {
       imports = [
+        stylix.homeModules.stylix
         ./../home.nix
         ./../homeModules/waylandDesktop/kde-plasma.nix
         ./../homeModules/gaming.nix

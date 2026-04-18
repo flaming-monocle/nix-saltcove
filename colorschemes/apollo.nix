@@ -1,8 +1,5 @@
 # Just the colors - any application specifics are handled through Stylix (default) or in a config file with mkForce, mkDefault, or mkOverride
-{ config, pkgs, lib, ... }:
-let 
-  colors = config.custom.colorscheme.apollo;
-in
+{ lib, ... }:
 {
   options.custom.colorscheme.apollo = lib.mkOption {
     type = lib.types.attrsOf lib.types.str;

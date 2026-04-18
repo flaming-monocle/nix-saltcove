@@ -2,7 +2,7 @@
 let
   inherit (lib) mkOption types mkForce;
   colors = config.lib.stylix.colors;
-  host = osConfig.networking.hostname;
+  host = osConfig.networking.hostName;
   mainMonitor = "DP-3";
   portraitMonitor = "DP-1";
   bifrostMonitor = "eDP-1";

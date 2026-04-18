@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   # Unified settings per-user across hosts
+  
   users.users = {
     kobi = {
       isNormalUser = true;
@@ -10,10 +11,12 @@
       shell = pkgs.zsh;
     };
   };
+  programs.zsh.enable = true;
 
   home-manager = {
-    users.kobi = {
+    users.kobi = { stylix, ... }: {
       imports = [
+        stylix.homeModules.stylix
         ./../home.nix
         ./../homeModules/audacity.nix
         ./../homeModules/font-manager.nix

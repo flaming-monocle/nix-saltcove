@@ -1,10 +1,6 @@
 # stylix/everbox.nix
-{ pkgs, inputs, ... }:
+{ ... }:
 {
-  imports = [
-    inputs.stylix.homeModules.stylix
-  ];
-
   stylix.base16Scheme = {
 		system = "base16";
 		name = "Everbox Dark";

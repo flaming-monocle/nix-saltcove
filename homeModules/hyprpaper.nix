@@ -1,6 +1,6 @@
 { config, osConfig, ... }:
 let
-  host = osConfig.networking.hostname;
+  host = osConfig.networking.hostName;
 in
 {
 	services.hyprpaper = {

@@ -30,7 +30,7 @@
         {
           home-manager = {
             useUserPackages = true;
-            extraSpecialArgs = specialArgs;
+            extraSpecialArgs = { inherit stylix; };
             backupFileExtension = "backup";
           };
         }
@@ -42,12 +42,16 @@
         snowblack = nixpkgs.lib.nixosSystem {
           specialArgs = specialArgs;
           system = system;
-          modules = shared-modules ++ [ ./hosts/snowblack.nix ];
+          modules = shared-modules ++ [
+            ./hosts/snowblack.nix
+          ];
         };
         bifrost = nixpkgs.lib.nixosSystem {
           specialArgs = specialArgs;
           system = system;
-          modules = shared-modules ++ [ ./hosts/bifrost.nix ];
+          modules = shared-modules ++ [
+            ./hosts/bifrost.nix
+          ];
         };
       };
     };

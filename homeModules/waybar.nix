@@ -1,6 +1,6 @@
 { config, pkgs, lib, osConfig, ... }:
 let 
-  hostname = osConfig.networking.hostname;
+  hostname = osConfig.networking.hostName;
   mainMonitor = if hostname == "snowblack" then [
     "DP-3"
   ] else [ 
