@@ -35,7 +35,6 @@
         pavu = "pavucontrol";
         r = "ranger";
       }
-
       # Kobi-specific binds
       (lib.mkIf (config.home.username == "kobi") {
         vim = "nvim";
@@ -62,7 +61,8 @@
 	      "kitty"
 	      "vscode"
       ];
-    
+    };
+
     initContent = ''
 			gc() { 
 				git commit -m "$*" 
@@ -71,6 +71,5 @@
 				sudo git commit -m "$*" 
 			}
 		'';
-    };
   };
 }

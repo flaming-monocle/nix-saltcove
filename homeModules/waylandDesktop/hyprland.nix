@@ -46,7 +46,7 @@ in
   	  settings = {
         "$mod" = "SUPER";
         "$terminal" = "kitty";
-        "$fileManager" = "thunar";
+        "$fileManager" = "dolphin";
         "$menu" = "rofi";
   
         "ecosystem:no_update_news" = true;
@@ -192,6 +192,5 @@ in
         workspace = [] ++ config.custom.hyprland.layoutWorkspace;
       };
     };
-    services.gvfs.enable = true; # file shortcuts in hyprctl dash
   };
 }

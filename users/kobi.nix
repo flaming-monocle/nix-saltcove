@@ -18,27 +18,28 @@
         ./../homeModules/audacity.nix
         ./../homeModules/font-manager.nix
         ./../homeModules/freecad.nix
-        ./../homeModules/libreoffice.nix
-        ./../homeModules/obsidian.nix
-        ./../homeModules/reaper.nix
-        ./../homeModules/shotcut.nix
-        ./../homeModules/thunderbird.nix
-        ./../homeModules/transmission.nix
         ./../homeModules/gaming.nix
+        ./../homeModules/gimp.nix
         ./../homeModules/waylandDesktop/hyprland.nix
         ./../homeModules/hyprpaper.nix
         ./../homeModules/hyprpolkit.nix
         ./../homeModules/kitty.nix
         ./../homeModules/math.nix
-        #./../homeModules/nixvim
+        ./../homeModules/libreoffice.nix
+        # ./../homeModules/nixvim
         ./../homeModules/obs.nix
+        ./../homeModules/obsidian.nix
+        ./../homeModules/reaper.nix
         ./../homeModules/rofi.nix
+        ./../homeModules/shotcut.nix
         ./../homeModules/starship.nix
+        ./../homeModules/stylix/default.nix
         ./../homeModules/swaync.nix
-        ./../homeModules/thunar.nix
+        ./../homeModules/thunderbird.nix
+        ./../homeModules/transmission.nix
+        # ./../homeModules/thunar.nix
         ./../homeModules/waybar.nix
         ./../homeModules/zsh.nix
-        ./../homeModules/gimp.nix
       ];
       programs.git = {
         enable = true;

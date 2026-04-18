@@ -1,11 +1,11 @@
 { config, pkgs, lib, osConfig, ... }:
 let 
-  host = osConfig.networking.hostname;
-  mainMonitor = if host == "snowblack" then [
-      "DP-3"
-    ] else [ 
-      "eDP-1" 
-    ];
+  hostname = osConfig.networking.hostname;
+  mainMonitor = if hostname == "snowblack" then [
+    "DP-3"
+  ] else [ 
+    "eDP-1" 
+  ];
   snowblackModules = {
     modules-left = [
       "custom/nixos"
@@ -28,12 +28,17 @@ let
     modules-center = [
     ];
     modules-right = [
-      "pulseaudio"
       "backlight"
       "battery"
+      "pulseaudio"
       "custom/notification"
     ];
   };
+  modules = if hostname == "snowblack" then [
+    snowblackModules
+  ] else [
+    bifrostModules
+  ];
 in
 {
   programs.waybar = {
@@ -48,21 +53,9 @@ in
           mainMonitor
         ];
 
-        modules-left = [
-          "custom/nixos"
-          "hyprland/workspaces"
-        ];
-
-        modules-center = [
-          "clock"
-        ];
-
-        modules-right = [
-          "pulseaudio"
-          "cpu"
-          "memory"
-          "custom/notification"
-        ];
+        modules-left = modules.modules-center;
+        modules-center = modules.modules-center;
+        modules-right = modules.modules-right;
 
         "custom/nixos" = {
           format = " ";

@@ -16,9 +16,6 @@
     kdePackages.isoimagewriter # Write hybrid ISOs to USB
     kdePackages.partitionmanager # Disk and partition management
     hardinfo2 # System benchmarks and hardware info
-    wayland-utils # Wayland diagnostic tools
-    wl-clipboard # Wayland copy/paste support
-    wl-clip-persist
   ];
 
   # Pipewire enabled by default

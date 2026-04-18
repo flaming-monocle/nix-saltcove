@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
-  bg = config.lib.stylix.colors.withHashtag.base01;
-  fg = config.lib.stylix.colors.withHashtag.base06;
+  bg = config.lib.stylix.colors.base01;
+  fg = config.lib.stylix.colors.base06;
   inherit (lib) strings;
   user = config.home.username;
   promptBar = 

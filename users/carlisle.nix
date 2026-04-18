@@ -21,6 +21,7 @@
         ./../homeModules/kitty.nix
         #./../homeModules/nixvim
         ./../homeModules/starship.nix
+        ./../homeModules/stylix/default.nix
         ./../homeModules/zsh.nix
       ];
     };

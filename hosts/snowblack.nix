@@ -6,6 +6,7 @@
     ./snowblack-hardware.nix
     ./../configuration/default.nix
     ./../configuration/gaming.nix
+    ./../configuration/dolphin.nix
 
     # User Settings
     ./../users/kobi.nix

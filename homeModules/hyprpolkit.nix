@@ -4,5 +4,5 @@
 		hyprpolkitagent
 	];
 
-	hyprpolkitagent.enable = true;
+	services.hyprpolkitagent.enable = true;
 }
