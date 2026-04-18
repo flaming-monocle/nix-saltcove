@@ -21,7 +21,7 @@
         ./../homeModules/audacity.nix
         ./../homeModules/font-manager.nix
         ./../homeModules/freecad.nix
-        ./../homeModules/gaming.nix
+        # ./../homeModules/gaming.nix
         ./../homeModules/gimp.nix
         ./../homeModules/waylandDesktop/hyprland.nix
         ./../homeModules/hyprpaper.nix

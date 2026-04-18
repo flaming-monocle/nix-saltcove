@@ -47,8 +47,8 @@ in
       mainBar = {
         layer = "top";
         position = "top";
-        height = "25";
-        spacing = "4";
+        height = 25;
+        spacing = 4;
         output = [
           mainMonitor
         ];

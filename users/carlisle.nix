@@ -19,7 +19,7 @@
         stylix.homeModules.stylix
         ./../home.nix
         ./../homeModules/waylandDesktop/kde-plasma.nix
-        ./../homeModules/gaming.nix
+        # ./../homeModules/gaming.nix
         ./../homeModules/gimp.nix
         ./../homeModules/kitty.nix
         #./../homeModules/nixvim

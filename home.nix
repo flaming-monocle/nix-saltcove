@@ -12,7 +12,7 @@
     # Archives and Formats
     zip
     unzip
-    rar
+    # rar
     p7zip
     gnutar
     ffmpeg
