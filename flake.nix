@@ -7,17 +7,21 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim/main";
+    nvf = {
+      url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #nixvim = {
+    #  url = "github:nix-community/nixvim/main";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nvf, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
       specialArgs = inputs // { inherit system; };
@@ -30,6 +34,7 @@
             backupFileExtension = "backup";
           };
         }
+        nvf.nixosModules.default
       ];
     in
     {

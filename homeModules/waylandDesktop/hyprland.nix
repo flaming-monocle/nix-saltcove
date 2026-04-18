@@ -28,8 +28,8 @@ in
   };
   
   imports = [
-    ./hyprland-modules/scrolling.nix
-    #./hyprland-modules/dwindle.nix
+    ./hyprland-layout/scrolling.nix
+    #./hyprland-layout/dwindle.nix
   ];
 
   config = {
@@ -192,6 +192,6 @@ in
         workspace = [] ++ config.custom.hyprland.layoutWorkspace;
       };
     };
+    services.gvfs.enable = true; # file shortcuts in hyprctl dash
   };
-  services.gvfs.enable = true; # file shortcuts in hyprctl dash
 }

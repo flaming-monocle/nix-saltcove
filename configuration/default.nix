@@ -2,7 +2,9 @@
 {
   # -- Universal Settings --
   imports = [
-    ./config/wayland.nix
+    ./wayland.nix
+    ./nvf/default.nix
+    ./fonts.nix
   ];
 
   # Packages

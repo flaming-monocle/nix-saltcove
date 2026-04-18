@@ -5,7 +5,7 @@ let
 in
 {
   # Remember, extraPackages are declared on nixvim.nix
-  config.programs = {
+  programs = {
     nixvim.plugins = {
       # One liners
       lz-n.enable = true;

@@ -30,10 +30,11 @@
         ./../homeModules/hyprpolkit.nix
         ./../homeModules/kitty.nix
         ./../homeModules/math.nix
-        ./../homeModules/nixvim
+        #./../homeModules/nixvim
         ./../homeModules/obs.nix
         ./../homeModules/rofi.nix
         ./../homeModules/starship.nix
+        ./../homeModules/swaync.nix
         ./../homeModules/thunar.nix
         ./../homeModules/waybar.nix
         ./../homeModules/zsh.nix

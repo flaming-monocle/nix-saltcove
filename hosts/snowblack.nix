@@ -2,9 +2,10 @@
 {
   # Settings apply to all users in host
   imports = [ 
-    # System Base
+    # Host Settings
     ./snowblack-hardware.nix
-    ./../configuration.nix
+    ./../configuration/default.nix
+    ./../configuration/gaming.nix
 
     # User Settings
     ./../users/kobi.nix

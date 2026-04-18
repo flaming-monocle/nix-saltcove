@@ -4,7 +4,7 @@
   imports = [
     # System Base
     ./bifrost-hardware.nix
-    ./../configuration.nix
+    ./../configuration/default.nix
 
     # User Settings
     ./../users/kobi.nix

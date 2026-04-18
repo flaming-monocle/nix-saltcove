@@ -19,7 +19,7 @@
         ./../homeModules/gaming.nix
         ./../homeModules/gimp.nix
         ./../homeModules/kitty.nix
-        ./../homeModules/nixvim
+        #./../homeModules/nixvim
         ./../homeModules/starship.nix
         ./../homeModules/zsh.nix
       ];

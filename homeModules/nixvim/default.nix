@@ -1,7 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 {
   imports = [
-    #inputs.nixvim.homeModules.nixvim #TODO may be a problem, reassess after first config
+    inputs.nixvim.homeModules.nixvim #TODO may be a problem, reassess after first config
     ./plugins/default.nix
     ./keymaps.nix
     ./colorscheme.nix
