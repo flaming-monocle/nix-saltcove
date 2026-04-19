@@ -28,10 +28,6 @@
     firewall.enable = true;
   };
 
-  # System Settings
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowInsecure = true;
-
   nix.settings = {
     auto-optimise-store = true;
     download-buffer-size = 262144000; # 250MB

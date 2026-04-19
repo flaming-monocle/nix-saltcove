@@ -31,7 +31,8 @@
           home-manager = {
             useUserPackages = true;
             extraSpecialArgs = { inherit stylix; };
-            backupFileExtension = "backup";
+            # backupFileExtension = "backup";
+            backupCommand = "mv /bin/trash";
           };
         }
         nvf.nixosModules.default

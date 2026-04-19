@@ -18,13 +18,13 @@
       imports = [
         stylix.homeModules.stylix
         ./../home.nix
-        ./../homeModules/waylandDesktop/kde-plasma.nix
-        # ./../homeModules/gaming.nix
+        # ./../homeModules/waylandDesktop/kde-plasma.nix
+        ./../homeModules/gaming.nix
         ./../homeModules/gimp.nix
         ./../homeModules/kitty.nix
-        #./../homeModules/nixvim
-        ./../homeModules/starship.nix
-        ./../homeModules/stylix/default.nix
+        # ./../homeModules/nixvim
+        # ./../homeModules/starship.nix
+        # ./../homeModules/stylix/default.nix
         ./../homeModules/zsh.nix
       ];
     };

@@ -33,6 +33,10 @@
     # Host- AND user-specific settings
   };
 
+  # System Settings
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowInsecure = true;
+
   # Hostname
   networking.hostName = "snowblack";
 

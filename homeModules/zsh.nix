@@ -1,4 +1,7 @@
 { config, lib, pkgs, ... }:
+let
+  user = config.home.username;
+in
 {
   home.packages = with pkgs; [
     oh-my-zsh
@@ -36,14 +39,19 @@
         r = "ranger";
       }
       # Kobi-specific binds
-      (lib.mkIf (config.home.username == "kobi") {
-        vim = "nvim";
-        cim = "nvim";
-        ivm = "nvim";
+      (lib.mkIf (user == "kobi") {
+        cim = "vim";
+        ivm = "vim";
         svim = "sudoedit";
         img = "qimgv";
         stash = "cd /home/kobi/Media && ./stash-linux";
         H = "Hyprland";
+        sessionquit = "hyprctl dispatch exit";
+      })
+      # Carlisle-specific binds
+      (lib.mkIf (user == "carlisle") {
+        K = "startplasma-wayland";
+        sessionquit = "loginctl terminate-user carlisle";
       })
     ];
 
@@ -64,12 +72,13 @@
     };
 
     initContent = ''
-			gc() { 
-				git commit -m "$*" 
-			}
-			sgc() { 
-				sudo git commit -m "$*" 
-			}
+			gc() { git commit -m "$*" }
+			sgc() { sudo git commit -m "$*" }
+                        gp() { grep "$*" }
+                        gpr() { grep -r "$*" }
+                        gpl() { grep -l "$*" }
+                        gplr() {grep -lr "$*" }
+                        gprl() {grep -lr "$*" }
 		'';
   };
 }

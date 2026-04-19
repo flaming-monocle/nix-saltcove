@@ -1,13 +1,14 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
+  # Source: github:jack-thesparrow/schrovimger/blob/main/core/autocmp.nix
+  imports = [
+    ./core
+    # ./plugins
+    # ./themes
+    # ./ui
+    # ./utility
+  ];
   programs.nvf = {
     enable = true;
-    settings = {
-      vim.viAlias = false;
-      vim.vimAlias = true;
-      vim.lsp = {
-        enable = true;
-      };
-    };
   };
 }

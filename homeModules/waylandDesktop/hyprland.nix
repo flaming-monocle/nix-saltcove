@@ -29,7 +29,7 @@ in
   
   imports = [
     ./hyprland-layout/scrolling.nix
-    #./hyprland-layout/dwindle.nix
+    # ./hyprland-layout/dwindle.nix
   ];
 
   config = {
@@ -144,13 +144,13 @@ in
   				"HYPRCURSOR_SIZE,25"
         ] else [
   				"HYPRCURSOR_THEME,rose-pine-hyprcursor"
-  				"HYPRCURSOR_SIZE,15"
+  				"HYPRCURSOR_SIZE,20"
         ];
         
         exec-once = [
   			  "systemctl --user import-environment WAYLAND_DISPLAY XDG_RUNTIME_DIR HYPRLAND_INSTANCE_SIGNATURE"
   			  "systemctl --user start hyprpolkitagent"
-          "hyprpanel"
+          "waybar"
   			  "hyprpaper"
         ];
         

@@ -1,43 +1,10 @@
-{ config, pkgs, lib, osConfig, ... }:
+{ osConfig, ... }:
 let 
   hostname = osConfig.networking.hostName;
   mainMonitor = if hostname == "snowblack" then [
     "DP-3"
   ] else [ 
     "eDP-1" 
-  ];
-  snowblackModules = {
-    modules-left = [
-      "custom/nixos"
-      "clock"
-      "hyprland/workspaces"
-    ];
-    modules-center = [
-    ];
-    modules-right = [
-      "pulseaudio"
-      "custom/notification"
-    ];
-  };
-  bifrostModules = {
-    modules-left = [
-      "custom/nixos"
-      "clock"
-      "hyprland/workspaces"
-    ];
-    modules-center = [
-    ];
-    modules-right = [
-      "backlight"
-      "battery"
-      "pulseaudio"
-      "custom/notification"
-    ];
-  };
-  modules = if hostname == "snowblack" then [
-    snowblackModules
-  ] else [
-    bifrostModules
   ];
 in
 {
@@ -47,16 +14,28 @@ in
       mainBar = {
         layer = "top";
         position = "top";
-        height = 25;
+        height = 30;
         spacing = 4;
-        output = [
-          mainMonitor
-        ];
+        output = mainMonitor;
 
-        modules-left = modules.modules-center;
-        modules-center = modules.modules-center;
-        modules-right = modules.modules-right;
-
+        modules-left = if hostname == "snowblack" then [
+            "custom/nixos"
+            "clock"
+            "hyprland/workspaces"
+          ] else [
+            "custom/nixos"
+            "clock"
+            "hyprland/workspaces"
+          ];
+        modules-right = if hostname == "snowblack" then [
+            "pulseaudio"
+            "custom/notification"
+          ] else [
+            "backlight"
+            "battery"
+            "pulseaudio"
+            "custom/notification"
+          ];
         "custom/nixos" = {
           format = " ";
           tooltip = false;
@@ -118,9 +97,7 @@ in
         "pulseaudio" = {
           format = "{icon} {volume}%";
           format-muted = "  Muted";
-          format-icons = {
-            default = [ " " " " " " " " ];
-          };
+          format-icons = " ";
           on-click = "pavucontrol";
         };
 
@@ -132,7 +109,7 @@ in
         };
 
         "clock" = {
-          format = "󰃭 {:%R $a %y-%m-%d}";
+          format = "󰃭 {:%R %a. %y-%m-%d}";
           # eg, 13:44 Sat. 24-04-18
           tooltip-format = "<tt><small>{calendar}</small></tt>";
         };
