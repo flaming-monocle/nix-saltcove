@@ -27,8 +27,9 @@ in
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
-    nvidiaPersistenced = true;
-    open = false;
+    # nvidiaPersistenced = true;
+    open = true;
+    nvidiaSettings = true;
   };
 
   # src/common/pc/ssd

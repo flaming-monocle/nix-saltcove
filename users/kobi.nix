@@ -19,6 +19,7 @@
         stylix.homeModules.stylix
         ./../home.nix
         #./../homeModules/audacity.nix
+        ./../homeModules/discord.nix
         ./../homeModules/font-manager.nix
         #./../homeModules/freecad.nix
         ./../homeModules/gaming.nix

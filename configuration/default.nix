@@ -1,10 +1,12 @@
 { config, pkgs, lib, ... }:
 {
   # -- Universal Settings --
+
   imports = [
     ./wayland.nix
     ./nvf/default.nix
     ./fonts.nix
+    ./gaming.nix
   ];
 
   # Packages

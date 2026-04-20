@@ -31,9 +31,9 @@ in
         "..." = "cd ..; cd ..;";
         "...." = "cd ..; cd ..; cd ..;";
         ga = "git add .";
-        ggpull = ''git pull origin "$(current_git_branch)"'';
-        ggpush = ''git push origin "$(current_git_branch)"'';
-        nixls = "cd /etc/nixos/ && tree";
+        ggpull = ''git pull origin "$BRANCH_NAME"'';
+        ggpush = ''git push origin "$BRANCH_NAME"'';
+        nixls = ''cd /etc/nixos && tree -L 2 -P "*.nix"'';
         nixrs = "cd /etc/nixos && git add . && sudo nixos-rebuild switch --flake";
         pavu = "pavucontrol";
         r = "ranger";
@@ -46,7 +46,7 @@ in
         img = "qimgv";
         stash = "cd /home/kobi/Media && ./stash-linux";
         H = "Hyprland";
-        sessionquit = "hyprctl dispatch exit";
+        sessionquit = "loginctl terminate-user carlisle";
       })
       # Carlisle-specific binds
       (lib.mkIf (user == "carlisle") {

@@ -19,6 +19,7 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    #spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs = { self, nixpkgs, home-manager, nvf, stylix, ... }@inputs:
@@ -36,6 +37,7 @@
           };
         }
         nvf.nixosModules.default
+        # spicetify-nix.homeManagerModules.default
       ];
     in
     {
