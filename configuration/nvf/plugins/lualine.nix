@@ -1,8 +1,9 @@
 { ... }:
 {
   programs.nvf.settings.vim = {
-    utility.yanky-nvim = {
+    statusline.lualine = {
       enable = true;
+      theme = "everforest";
     };
   };
 }

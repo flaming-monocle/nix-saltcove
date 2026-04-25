@@ -3,12 +3,11 @@
   imports = [
     ./autocmp.nix
     # ./autopairs.nix
-    ./clipboard.nix
-    ./options.nix
+    # ./clipboard.nix
     ./keymaps.nix
     ./luaLoader.nix
-    ./luaConfigRC.nix
-    ./session.nix
-    ./whichKey.nix
+    ./options.nix
+    # ./session.nix
+    # ./whichKey.nix
   ];
 }

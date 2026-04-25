@@ -1,9 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 {
   programs.nvf.settings.vim = {
-    globals = {
-      mapleader = " ";
-    };
     options = {
       # Numbering
       number = true;
@@ -21,12 +18,12 @@
       breakindent = true;
 
       # Fold Settings
+      foldenable = false;
       foldcolumn = "1";
       foldlevel = 99;
       foldlevelstart = 99;
-      foldenable = false;
 
-      shada = "!,'100,<50,s10,h";
+      #shada = "!,'100,<50,s10,h";
       #shadafile = "NONE";
 
       wrap = false;

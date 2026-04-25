@@ -17,7 +17,9 @@
       clang
       vim
       git
+      direnv
     ];
+
     pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
     sessionVariables.NIXOS_OZONE_WL = "1"; # Forces Wayland for transparency
     variables.EDITOR = "nvim";
