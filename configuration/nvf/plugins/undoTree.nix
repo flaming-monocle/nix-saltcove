@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  vim = {
+  programs.nvf.settings.vim = {
     startPlugins = [
       pkgs.vimPlugins.undotree
     ];

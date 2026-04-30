@@ -1,31 +1,4 @@
 { ... }:
-let
-  treesitterLanguages = [
-    "bash"
-    "css"
-    # "html"
-    #"js"
-    #"json"
-    # "kotlin"
-    # "lua"
-    "markdown"
-    "nix"
-    "python"
-    # "rust"
-    # "sql"
-    #"typescript"
-    "yaml"
-  ];
-
-  treeSitterEnables = builtins.listToAttrs (
-    builtins.map (lang: {
-      name = lang;
-      value = {
-        treesitter.enable = true;
-      };
-    }) treesitterLanguages
-  );
-in
 {
   programs.nvf.settings.vim = {
     treesitter = {
@@ -50,11 +23,5 @@ in
         };
       };
     };
-    languages = {
-      enableFormat = true;
-      enableTreesitter = true;
-      enableExtraDiagnostics = true;
-    }
-    // treeSitterEnables;
   };
 }

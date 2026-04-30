@@ -4,9 +4,11 @@
     lsp = {
       enable = true;
       lspconfig.enable = true;
-      formatOnSave = true;
       lspSignature.enable = false;
       lspkind.enable = true;
+      trouble.enable = true;
+
+      formatOnSave = true;
 
       lspsaga = {
         enable = true;
@@ -17,13 +19,21 @@
         };
       };
 
-      inlayHints.enable = true;
+      inlayHints.enable = false;
       lightbulb.enable = false;
       null-ls.enable = true;
     };
 
     ui.borders.plugins.lspsaga = {
       enable = true;
+    };
+
+    diagnostics = {
+      enable = true;
+      config = {
+        virtual_lines = false;
+        virtual_text = false;
+      };
     };
   };
 }

@@ -19,13 +19,22 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, nvf, stylix, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nvf,
+      stylix,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
-      specialArgs = inputs // { inherit system; };
+      specialArgs = inputs // {
+        inherit system;
+      };
       shared-modules = [
         home-manager.nixosModules.home-manager
         {
@@ -37,7 +46,6 @@
           };
         }
         nvf.nixosModules.default
-        # spicetify-nix.homeManagerModules.default
       ];
     in
     {

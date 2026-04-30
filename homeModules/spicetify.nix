@@ -1,6 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 let
-  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stenv.hostPlatform.system}
+  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stenv.hostPlatform.system};
 in
 {
   programs.spicetify = {

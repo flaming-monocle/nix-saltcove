@@ -1,54 +1,61 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   colors = config.custom.colorscheme.apollo;
   user = config.home.username;
-  userTheme = 
-    if user == "kobi" then [
-      ./everforest.nix
-    ] else [ 
-      ./everforest.nix
-    ];
+  userTheme =
+    if user == "kobi" then
+      [
+        ./everforest.nix
+      ]
+    else
+      [
+        ./everforest.nix
+      ];
 in
 {
-	#imports = [
+  #imports = [
   #  userTheme
-	#];
-  
-  stylix = {		
+  #];
+
+  stylix = {
     enable = true;
-		targets = {
-			starship.enable = false;
+    targets = {
+      starship.enable = false;
     };
 
-		opacity = {
-			terminal = 0.5;
-		};
+    opacity = {
+      terminal = 0.5;
+    };
 
-		fonts = {
-			serif = {
-				package = pkgs.dejavu_fonts;
-				name = "DejaVu Serif";
-			};
-			sansSerif = {
-				package = pkgs.dejavu_fonts;
-				name = "DejaVu Sans";
-			};
-			monospace = {
-				package = pkgs.dejavu_fonts;
-				name = "JetBrains Mono";
-			};
-			emoji = {
-				package = pkgs.twitter-color-emoji;
-				name = "Twitter Color Emoji";
+    fonts = {
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
       };
-		};
-    
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      monospace = {
+        package = pkgs.dejavu_fonts;
+        name = "JetBrains Mono";
+      };
+      emoji = {
+        package = pkgs.twitter-color-emoji;
+        name = "Twitter Color Emoji";
+      };
+    };
+
     base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-hard.yaml";
 
     #base16Scheme = {
     #  system = "base16";
     #  name = "Apollo16";
-		#  author = "Kobi O'Reilly (https://github.com/flaming-monocle)";
+    #  author = "Kobi O'Reilly (https://github.com/flaming-monocle)";
     #  palette = {
     #    base00 = "#${colors.bg00}"; # Background
     #    base01 = "#${colors.bg01}"; # Bar background
@@ -66,9 +73,9 @@ in
     #    base0D = "#${colors.fg05}"; # functions, methods, headings
     #    base0E = "#${colors.fg01}"; # Warnings, keywords, storage, markup italic, diff changed
     #    base0F = "#${colors.fg07}"; # depreciated, some embedded tags
-		#  };
+    #  };
     #};
   };
-  
-	gtk.gtk4.theme = null;
+
+  gtk.gtk4.theme = null;
 }

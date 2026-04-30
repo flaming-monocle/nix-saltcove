@@ -1,11 +1,10 @@
 { ... }:
 {
   programs.nvf.settings.vim = {
-    lsp.servers.nixd.enable = true;
     languages = {
       enableFormat = true;
       enableDAP = false; # TODO
-      enableExtraDiagnostics = true;
+      enableExtraDiagnostics = false;
       enableTreesitter = true;
 
       bash = {
@@ -43,9 +42,11 @@
 
       python = {
         enable = true;
-        lsp.enable = true;
         format.enable = true;
-        treesitter.enable = true;
+        lsp = {
+          enable = true;
+          servers = [ "pyright" ];
+        };
       };
 
       yaml = {

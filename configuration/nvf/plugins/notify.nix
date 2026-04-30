@@ -1,19 +1,21 @@
 { ... }:
 {
-  vim.notify = {
-    nvim-notify = {
-      enable = true;
+  programs.nvf.settings.vim = {
+    notify = {
+      nvim-notify = {
+        enable = true;
 
-      setupOpts = {
-        render = "wrapped-compact";
-        stages = "static";
+        setupOpts = {
+          render = "wrapped-compact";
+          stages = "static";
 
-        open_raw = {
-          __raw = ''
-            function(win)
-              vim.api.nvim_win_set_config(win, {focusable = false})
-            end
-          '';
+          open_raw = {
+            __raw = ''
+              function(win)
+                vim.api.nvim_win_set_config(win, {focusable = false})
+              end
+            '';
+          };
         };
       };
     };

@@ -3,17 +3,52 @@
   programs.nvf.settings.vim = {
     globals.mapleader = " ";
     keymaps = [
+      # Good Habits
+      {
+        key = "<Left>";
+        mode = "n";
+        silent = true;
+        action = "";
+        desc = "Nuh uh uh!";
+      }
+      {
+        key = "<Down>";
+        mode = "n";
+        silent = true;
+        action = "";
+        desc = "Nuh uh uh!";
+      }
+      {
+        key = "<Up>";
+        mode = "n";
+        silent = true;
+        action = "";
+        desc = "Nuh uh uh!";
+      }
+      {
+        key = "<Right>";
+        mode = "n";
+        silent = true;
+        action = "";
+        desc = "Nuh uh uh!";
+      }
       # Yanky
       {
         key = "p";
-        mode = [ "n" "x" ];
+        mode = [
+          "n"
+          "x"
+        ];
         silent = true;
         action = "<Plug>(YankyPutAfter)";
         desc = "Pastes after the cursor";
       }
       {
         key = "P";
-        mode = [ "n" "x" ];
+        mode = [
+          "n"
+          "x"
+        ];
         silent = true;
         action = "<Plug>(YankyPutBefore)";
         desc = "Pastes before the cursor";
@@ -36,16 +71,10 @@
         key = "<leader>p";
         mode = "n";
         silent = true;
-        action = ''<cmd>lua require("telescope").extensions.yank_history.yank_history()''
+        action = ''<cmd>lua require("telescope").extensions.yank_history.yank_history()'';
         desc = "Open clipboard history";
       }
-      {
-        key = 
-        mode = "n";
-        silent = true;
-        action = 
-        desc = 
-      }
+
       # Telescope
       {
         key = "<leader>ff";

@@ -23,7 +23,7 @@
       foldlevel = 99;
       foldlevelstart = 99;
 
-      #shada = "!,'100,<50,s10,h";
+      shada = "!,'100,<50,s10,h";
       #shadafile = "NONE";
 
       wrap = false;

@@ -1,12 +1,9 @@
 { ... }:
-let
-  vaultDir = "/home/kobi/Documents/secondBrain/";
-in
 {
   imports = [
-    ./alpha.nix
+    # ./alpha.nix
     ./conform.nix
-    # ./debugger.nix
+    ./debugger.nix
     ./filetree.nix
     ./floaterm.nix
     ./fzf.nix
@@ -16,12 +13,11 @@ in
     ./lsp.nix
     ./lualine.nix
     # ./luasnip.nix
-    ./minimap.nix
-    ./notes.nix
-    ./notify.nix
+    # ./minimap.nix
+    # ./notify.nix
     ./obsidian.nix
     ./projects.nix
-    ./snacks
+    # ./snacks
     ./telescope.nix
     # ./terminal.nix
     ./treesitter.nix
