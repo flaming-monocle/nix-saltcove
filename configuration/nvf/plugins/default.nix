@@ -5,7 +5,7 @@
     ./conform.nix
     ./debugger.nix
     ./filetree.nix
-    ./floaterm.nix
+    # ./floaterm.nix
     ./fzf.nix
     # ./git.nix
     # ./hardtime.nix
@@ -15,13 +15,14 @@
     # ./luasnip.nix
     # ./minimap.nix
     # ./notify.nix
-    ./obsidian.nix
+    # ./obsidian.nix
     ./projects.nix
     # ./snacks
     ./telescope.nix
     # ./terminal.nix
     ./treesitter.nix
-    ./undoTree.nix
-    ./yanky.nix
+    # ./undoTree.nix
+    # ./yanky.nix
+    ./zen.nix
   ];
 }

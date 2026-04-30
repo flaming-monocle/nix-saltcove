@@ -2,7 +2,7 @@
 {
   imports = [
     ./autocmp.nix
-    # ./autopairs.nix
+    ./autopairs.nix
     # ./clipboard.nix
     ./keymaps.nix
     ./luaLoader.nix

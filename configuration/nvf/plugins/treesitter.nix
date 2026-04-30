@@ -10,7 +10,7 @@
       autotagHtml = true;
 
       context = {
-        enable = true;
+        enable = false;
         setupOpts = {
           line_numbers = true;
           max_lines = 3;

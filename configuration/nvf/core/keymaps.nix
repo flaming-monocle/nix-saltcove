@@ -3,76 +3,35 @@
   programs.nvf.settings.vim = {
     globals.mapleader = " ";
     keymaps = [
+
       # Good Habits
       {
         key = "<Left>";
         mode = "n";
-        silent = true;
+        silent = false;
         action = "";
         desc = "Nuh uh uh!";
       }
       {
         key = "<Down>";
         mode = "n";
-        silent = true;
+        silent = false;
         action = "";
         desc = "Nuh uh uh!";
       }
       {
         key = "<Up>";
         mode = "n";
-        silent = true;
+        silent = false;
         action = "";
         desc = "Nuh uh uh!";
       }
       {
         key = "<Right>";
         mode = "n";
-        silent = true;
+        silent = false;
         action = "";
         desc = "Nuh uh uh!";
-      }
-      # Yanky
-      {
-        key = "p";
-        mode = [
-          "n"
-          "x"
-        ];
-        silent = true;
-        action = "<Plug>(YankyPutAfter)";
-        desc = "Pastes after the cursor";
-      }
-      {
-        key = "P";
-        mode = [
-          "n"
-          "x"
-        ];
-        silent = true;
-        action = "<Plug>(YankyPutBefore)";
-        desc = "Pastes before the cursor";
-      }
-      {
-        key = "<C-p>";
-        mode = "n";
-        silent = true;
-        action = "<Plug>(YankyPreviousEntry)";
-        desc = "Select previous entry in clipboard";
-      }
-      {
-        key = "C-n";
-        mode = "n";
-        silent = true;
-        action = "<Plug>(YankyNextEntry)";
-        desc = "Select next entry in clipboard";
-      }
-      {
-        key = "<leader>p";
-        mode = "n";
-        silent = true;
-        action = ''<cmd>lua require("telescope").extensions.yank_history.yank_history()'';
-        desc = "Open clipboard history";
       }
 
       # Telescope
@@ -236,15 +195,6 @@
         mode = "n";
         silent = true;
         action = "<cmd>lua vim.diagnostic.setloclist()<CR>";
-        desc = "";
-      }
-
-      # Neotree
-      {
-        key = "<leader>e";
-        mode = "n";
-        silent = true;
-        action = "<cmd>Neotree<CR>";
         desc = "";
       }
 

@@ -24,9 +24,9 @@
       null-ls.enable = true;
     };
 
-    ui.borders.plugins.lspsaga = {
-      enable = true;
-    };
+    # ui.borders.plugins.lspsaga = {
+    #   enable = true;
+    # };
 
     diagnostics = {
       enable = true;
