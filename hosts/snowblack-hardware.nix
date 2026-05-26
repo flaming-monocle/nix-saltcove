@@ -3,27 +3,24 @@ let
   kver = config.boot.kernelPackages.kernel.version;
 in
 {
-  # Source: github:NixOS/nixos-hardware
-  # src/common/cpu/amd-cpu
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  
-  boot = lib.mkMerge [
-    (lib.mkIf ((lib.versionAtLeast kver "5.17") && (lib.versionOlder kver "6.1")) {
-      kernelParams = [ "initcall_blacklist=acpi_cpufreq_init" ];
-      kernelModules = [ "amd-pstate" ];
-    })
-    (lib.mkIf ((lib.versionAtLeast kver "6.1") && (lib.versionOlder kver "6.3")) {
-      kernelParams = [ "amd_pstate=passive" ];
-    })
-    (lib.mkIf (lib.versionAtLeast kver "6.3") {
-      kernelParams = [ "amd_pstate=active" ];
-    })
-  ];
+  imports = [
+    # ref GitHub:NixOS/nixos-hardware
 
-  # src/common/gpu/nvidia-gpu
-  services.xserver.videoDrivers = lib.mkDefault ["nvidia" ];
+    # CPU
+    ./hardware/cpu/amd/default.nix
 
-  # Custom: nvidia-gpu
+    # RTX 2070
+    ./hardware/gpu/nvidia/default.nix
+    ./hardware/gpu/nvidia/turing.nix
+
+    # PC
+    ./hardware/pc/default.nix
+
+    # SSD
+    ./hardware/ssd/default.nix
+  ]
+
+  #-- CUSTOM --#
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     modesetting.enable = true;
@@ -31,9 +28,6 @@ in
     open = true;
     nvidiaSettings = true;
   };
-
-  # src/common/pc/ssd
-  services.fstrim.enable = lib.mkDefault true;
 
   #-- SYSTEM GENERATED --#
   imports = [

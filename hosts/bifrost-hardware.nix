@@ -1,130 +1,33 @@
 { config, lib, pkgs, modulesPath, ... }:
+let
+  kver = config.boot.kernelPackages.kernel.version;
+in
 {
-  # Source: github:NixOS/nixos-hardware/
-  # src/common/cpu/intel
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # src/common/gpu/intel
-  options.hardware.intelgpu = {
-    driver = lib.mkOption {
-      description = "Intel GPU driver to use";
-      type = lib.types.enum [
-        "i915"
-        "xe"
-      ];
-      default = "i915";
-    };
-
-    loadInInitrd =
-      lib.mkEnableOption "Load the Intel GPU kernel module at stage 1 boot. (Added to `boot.initrd.kernelModules`)"
-      // {
-        default = true;
-      };
-
-    computeRuntime = lib.mkOption {
-      description = "intel-compute-runtime variant to use (legacy for Gen8–11, default for Gen12+)";
-      type = lib.types.enum [
-        "default"
-        "legacy"
-      ];
-      default = "default";
-    };
-
-    mediaRuntime = lib.mkOption {
-      description = "Intel media runtime to use (Media SDK for Gen8–11, OneVPL for Gen12+)";
-      type = lib.types.enum [
-        "vpl-gpu-rt"
-        "intel-media-sdk"
-      ];
-      default = "vpl-gpu-rt";
-    };
-
-    vaapiDriver = lib.mkOption {
-      description = "Intel VAAPI driver to use (use null to use both)";
-      type = lib.types.nullOr (
-        lib.types.enum [
-          "intel-vaapi-driver"
-          "intel-media-driver"
-        ]
-      );
-      default = null; # Use both drivers when we don't know which one to use
-    };
-
-    enableHybridCodec = lib.mkEnableOption "hybrid codec support for Intel GPUs";
-  };
-
-  config =
-    let
-      cfg = config.hardware.intelgpu;
-
-      useIntelVaapiDriver = cfg.vaapiDriver == "intel-vaapi-driver" || cfg.vaapiDriver == null;
-      intel-vaapi-driver = (pkgs.intel-vaapi-driver or pkgs.vaapiIntel).override {
-        enableHybridCodec = cfg.enableHybridCodec;
-      };
-      intel-vaapi-driver-32 =
-        (pkgs.driversi686Linux.intel-vaapi-driver or pkgs.driversi686Linux.vaapiIntel).override
-          {
-            enableHybridCodec = cfg.enableHybridCodec;
-          };
-
-      useIntelOcl =
-        useIntelVaapiDriver
-        && (config.hardware.enableAllFirmware or config.nixpkgs.config.allowUnfree or false);
-      intel-ocl = pkgs.intel-ocl;
-
-      useIntelMediaDriver = cfg.vaapiDriver == "intel-media-driver" || cfg.vaapiDriver == null;
-      intel-media-driver = pkgs.intel-media-driver;
-      intel-media-driver-32 = pkgs.driversi686Linux.intel-media-driver;
-      intel-compute-runtime =
-        if cfg.computeRuntime == "legacy" then
-          pkgs.intel-compute-runtime-legacy1
-        else
-          pkgs.intel-compute-runtime;
-      intel-media-runtime =
-        if cfg.mediaRuntime == "vpl-gpu-rt" then
-          pkgs.vpl-gpu-rt or pkgs.onevpl-intel-gpu
-        else
-          pkgs.intel-media-sdk;
-    in
-    {
-      boot.initrd.kernelModules = lib.optionals cfg.loadInInitrd [ cfg.driver ];
-
-      hardware.graphics.extraPackages =
-        lib.optionals useIntelVaapiDriver [ intel-vaapi-driver ]
-        ++ lib.optionals useIntelOcl [ intel-ocl ]
-        ++ lib.optionals useIntelMediaDriver [
-          intel-media-driver
-          intel-compute-runtime
-          intel-media-runtime
-        ];
-
-      hardware.graphics.extraPackages32 =
-        lib.optionals useIntelVaapiDriver [ intel-vaapi-driver-32 ]
-        ++ lib.optionals useIntelMediaDriver [ intel-media-driver-32 ];
-
-      assertions = [
-        {
-          assertion = (
-            cfg.driver != "xe" || lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.8"
-          );
-          message = "Intel Xe GPU driver is not supported on kernels earlier than 6.8. Update or use the i915 driver.";
-        }
-      ];
-    };
-
-  # src/common/pc/ssd
-  services.fstrim.enable = lib.mkDefault true;
-
-  # src/common/pc/laptop
-  services.tlp.enable = lib.mkDefault (!config.services.power-profiles-daemon.enable);
-
-  # src/lenovo/thinkpad/t480s
-  services.throttled.enable = lib.mkDefault true;
-
-  # -- SYSTEM GENERATED --
   imports = [
+    # ref GitHub:NixOS/nixos-hardware
+
+    # CPU
+    ./hardware/cpu/intel/default.nix
+    
+    # Intel integrated GPU
+    ./hardware/gpu/intel/default.nix
+    ./hardware/gpu/intel/kaby-lake.nix
+
+    # SSD
+    ./hardware/ssd/default.nix
+
+    # Laptop
+    ./hardware/laptop/default.nix
+    ./hardware/t480s/default.nix
+
+    #-- SYSTEM GENERATED --#
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+  
+  #-- SYSTEM GENERATED --#
+  #imports = [
+  #  (modulesPath + "/installer/scan/not-detected.nix")
+  #];
   
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
