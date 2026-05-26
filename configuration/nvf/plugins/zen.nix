@@ -1,6 +1,13 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.nvf.settings.vim = {
-    config.vim.startplugins = [ "zen-mode" ];
+    pluginOverrides = {
+      zen-mode = pkgs.fetchFromGitHub {
+        owner = "folke";
+        repo = "zen-mode.nvim";
+        rev = "";
+        hash = "";
+      };
+    };
   };
 }

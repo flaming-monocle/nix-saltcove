@@ -1,5 +1,14 @@
 { pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    # Install "home-manager" packages here
+
+  ];
+
+  environment.systemPackages = with pkgs; [
+    # Install "configuration.nix" packages here
+  ];
+
   # Unified settings per-user across hosts
 
   users.users = {

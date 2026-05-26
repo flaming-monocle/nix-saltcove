@@ -25,6 +25,9 @@ in
     enable = true;
     targets = {
       starship.enable = false;
+      neovim.enable = false;
+      nvf.enable = false;
+      vim.enable = false;
     };
 
     opacity = {

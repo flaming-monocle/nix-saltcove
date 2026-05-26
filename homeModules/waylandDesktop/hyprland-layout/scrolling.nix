@@ -6,10 +6,13 @@ let
   bifrostMonitor = "eDP-1";
   wsRange = builtins.genList (i: i + 1) 10;
   host = osConfig.networking.hostName;
-  wsSwapVal = 
-    if host == "snowblack" then "2"
-    else if host == "bifrost" then "1"
-    else "1";
+  wsSwapVal =
+    if host == "snowblack" then
+      "2"
+    else if host == "bifrost" then
+      "1"
+    else
+      "1";
 in
 {
   config = {
@@ -26,21 +29,27 @@ in
         "$mod, K, workspace, -${wsSwapVal}"
         "$mod SHIFT, L, layoutmsg, swapcol r"
         "$mod, L, layoutmsg, focus r"
+        "$mod, -, layoutmsg, colresize -0.1"
+        "$mod, =, layoutmsg, colresize +0.1"
       ];
-      layoutWorkspace = if host == "snowblack" then
-        builtins.map (ws:
-          if (mod ws 2 == 0)
-            then "${toString ws}, monitor:${portraitMonitor}, layoutopt:direction:down, default:true"
-          else "${toString ws}, monitor:${mainMonitor}, layoutopt:direction:right, default:true"
-        ) wsRange
-        else builtins.map (ws: 
-          "${toString ws}, monitor:${bifrostMonitor}, layoutopt:direction:right, default:true"
-        ) wsRange;
+      layoutWorkspace =
+        if host == "snowblack" then
+          map (
+            ws:
+            if (mod ws 2 == 0) then
+              "${toString ws}, monitor:${portraitMonitor}, layoutopt:direction:down, default:true"
+            else
+              "${toString ws}, monitor:${mainMonitor}, layoutopt:direction:right, default:true"
+          ) wsRange
+        else
+          map (
+            ws: "${toString ws}, monitor:${bifrostMonitor}, layoutopt:direction:right, default:true"
+          ) wsRange;
       layoutWindowrule = [
-        #"match:class gimp, scrolling_width 0.6"
+        # "match:class kitty, column_width = 0.22"
       ];
     };
-  
+
     wayland.windowManager.hyprland = {
       settings = {
         input."follow_mouse" = 2; # no focus change on hover, ref general.no_focus_fallback
@@ -50,7 +59,7 @@ in
         };
         scrolling = {
           focus_fit_method = 0; # Centers focused window in scroll
-          column_width = 0.4;
+          column_width = 0.45;
           fullscreen_on_one_column = false;
           #wrap_focus = true;
         };

@@ -23,7 +23,7 @@
         imports = [
           stylix.homeModules.stylix
           ./../home.nix
-          #./../homeModules/audacity.nix
+          ./../homeModules/audacity.nix
           ./../homeModules/discord.nix
           ./../homeModules/font-manager.nix
           #./../homeModules/freecad.nix
@@ -41,7 +41,7 @@
           # ./../homeModules/reaper.nix
           ./../homeModules/rofi.nix
           # ./../homeModules/shotcut.nix
-          ./../homeModules/spicetify.nix
+          # ./../homeModules/spicetify.nix
           ./../homeModules/starship.nix
           ./../homeModules/stylix/default.nix
           ./../homeModules/swaync.nix

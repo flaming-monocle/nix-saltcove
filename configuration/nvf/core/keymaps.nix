@@ -4,6 +4,15 @@
     globals.mapleader = " ";
     keymaps = [
 
+      # Zen mode
+      {
+        key = "<leader>z";
+        mode = "n";
+        silent = true;
+        action = "<cmd>ZenMode<CR>";
+        desc = "Toggle Zen Mode";
+      }
+
       # Good Habits
       {
         key = "<Left>";

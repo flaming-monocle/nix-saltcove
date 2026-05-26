@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   # -- Universal Settings --
 
@@ -18,14 +18,18 @@
       vim
       git
       direnv
+      spotify
     ];
 
-    pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
+    pathsToLink = [
+      "/share/applications"
+      "/share/xdg-desktop-portal"
+    ];
     sessionVariables.NIXOS_OZONE_WL = "1"; # Forces Wayland for transparency
     variables.EDITOR = "nvim";
     variables.SUDO_EDITOR = "nvim";
   };
-  
+
   # Networking
   networking = {
     networkmanager.enable = true;
@@ -35,7 +39,10 @@
   nix.settings = {
     auto-optimise-store = true;
     download-buffer-size = 262144000; # 250MB
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
   security.polkit.enable = true;
 
@@ -43,12 +50,12 @@
   programs.dconf.enable = true;
   programs.firefox.enable = true;
 
-	# Garbage Collection
-	nix.gc = {
-		automatic = true;
-		dates = "weekly";
-		options = "--delete-older-than 30d";
-	};
+  # Garbage Collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   # Locale
   time.timeZone = "America/New_York";
