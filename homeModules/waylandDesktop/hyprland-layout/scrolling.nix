@@ -1,18 +1,18 @@
 { lib, osConfig, ... }:
 let
-  inherit (lib) mod mkIf;
+  inherit (lib) mod;
+
+  snowblack = osConfig.networking.hostName == "snowblack";
+  # hostBifrost = osConfig.networking.hostName == "bifrost";
+
   mainMonitor = "DP-3";
   portraitMonitor = "DP-1";
   bifrostMonitor = "eDP-1";
+
   wsRange = builtins.genList (i: i + 1) 10;
-  host = osConfig.networking.hostName;
-  wsSwapVal =
-    if host == "snowblack" then
-      "2"
-    else if host == "bifrost" then
-      "1"
-    else
-      "1";
+  # Maintains hjkl nav on any horizontal-tape
+  # monitor in a multi-monitor configuration
+  wsSwapVal = if snowblack then "2" else "1";
 in
 {
   config = {
@@ -23,17 +23,18 @@ in
         # TODO Disable splitting windows vertically
         "$mod SHIFT, H, layoutmsg, swapcol l"
         "$mod, H, layoutmsg, focus l"
+        "$mod SHIFT, L, layoutmsg, swapcol r"
+        "$mod, L, layoutmsg, focus r"
         "$mod SHIFT, J, movetoworkspace, +${wsSwapVal}"
         "$mod, J, workspace, +${wsSwapVal}"
         "$mod SHIFT, K, movetoworkspace, -${wsSwapVal}"
         "$mod, K, workspace, -${wsSwapVal}"
-        "$mod SHIFT, L, layoutmsg, swapcol r"
-        "$mod, L, layoutmsg, focus r"
-        "$mod, -, layoutmsg, colresize -0.1"
-        "$mod, =, layoutmsg, colresize +0.1"
+        # "$mod SHIFT, -, layoutmsg, colresize -0.1"
+        # "$mod SHIFT, =, layoutmsg, colresize +0.1"
       ];
+
       layoutWorkspace =
-        if host == "snowblack" then
+        if snowblack then
           map (
             ws:
             if (mod ws 2 == 0) then
@@ -45,23 +46,29 @@ in
           map (
             ws: "${toString ws}, monitor:${bifrostMonitor}, layoutopt:direction:right, default:true"
           ) wsRange;
+
       layoutWindowrule = [
+        # TODO this is broken
+        # Be sure to enable
         # "match:class kitty, column_width = 0.22"
       ];
     };
 
     wayland.windowManager.hyprland = {
       settings = {
-        input."follow_mouse" = 2; # no focus change on hover, ref general.no_focus_fallback
+        # no focus change on hover, ref general.no_focus_fallback
+        input."follow_mouse" = 2;
         general = {
           layout = "scrolling";
-          no_focus_fallback = true; # mouse-over scrolling, but not focusing
+          # mouse-over scrolling, but not focusing
+          no_focus_fallback = true;
         };
         scrolling = {
-          focus_fit_method = 0; # Centers focused window in scroll
-          column_width = 0.45;
-          fullscreen_on_one_column = false;
-          #wrap_focus = true;
+          # Centers focused window in scroll
+          # focus_fit_method = 0;
+          # column_width = 0.5;
+          # fullscreen_on_one_column = false;
+          # wrap_focus = true;
         };
       };
     };

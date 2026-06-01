@@ -4,14 +4,81 @@
     globals.mapleader = " ";
     keymaps = [
 
-      # Zen mode
+      # Smart split navigation
       {
-        key = "<leader>z";
+        mode = [
+          "n"
+          "i"
+        ];
+        key = "<C-h>";
+        action = "<C-w>h";
+        silent = true;
+        desc = "Smart left navigation/split";
+      }
+      {
+        mode = [
+          "n"
+          "i"
+        ];
+        key = "<C-j>";
+        action = "<C-w>j";
+        silent = true;
+        desc = "Smart down navigation/split";
+      }
+      {
+        mode = [
+          "n"
+          "i"
+        ];
+        key = "<C-k>";
+        action = "<C-w>k";
+        silent = true;
+        desc = "Smart up navigation/split";
+      }
+      {
+        mode = [
+          "n"
+          "i"
+        ];
+        key = "<C-l>";
+        action = "<C-w>l";
+        silent = true;
+        desc = "Smart right navigation/split";
+      }
+
+      # Splits
+      {
+        key = "<leader>sv";
         mode = "n";
         silent = true;
-        action = "<cmd>ZenMode<CR>";
-        desc = "Toggle Zen Mode";
+        action = "<cmd>vsplit<CR>";
+        desc = "Split Vertical";
       }
+      {
+        key = "<leader>sh";
+        mode = "n";
+        silent = true;
+        action = "<cmd>split<CR>";
+        desc = "Split Horizontal";
+      }
+
+      # Treesitter
+      {
+        key = "<leader>tc";
+        mode = "n";
+        silent = true;
+        action = "<cmd>TSContext toggle<CR>";
+        desc = "Toggle the Treesitter context";
+      }
+
+      # Zen mode
+      # {
+      #   key = "<leader>z";
+      #   mode = "n";
+      #   silent = true;
+      #   action = "<cmd>ZenMode<CR>";
+      #   desc = "Toggle Zen Mode";
+      # }
 
       # Good Habits
       {
@@ -133,36 +200,6 @@
         desc = "LSP Code Action (Visual)";
       }
 
-      # cmp
-      {
-        key = "<C-Space>";
-        mode = "i";
-        silent = true;
-        action = "<cmd>lua require'cmp'.complete()<CR>";
-        desc = "Insert selected completion";
-      }
-      {
-        key = "<Tab>";
-        mode = "i";
-        silent = true;
-        action = "<cmd>lua require'cmp'.select_next_item()<CR>";
-        desc = "Select next completion";
-      }
-      {
-        key = "<S-Tab>";
-        mode = "i";
-        silent = true;
-        action = "<cmd>lua require'cmp'.select_prev_item()<CR>";
-        desc = "Select previous completion";
-      }
-      {
-        key = "<S-Space>";
-        mode = "i";
-        silent = true;
-        action = "<cmd>lua require'cmp'.close()<CR>";
-        desc = "Close completion menu";
-      }
-
       # Diagnostics
       {
         key = "<leader>d";
@@ -215,38 +252,6 @@
       #  action = "<cmd>Session<CR>";
       #  desc = "Open Session Manager";
       #}
-
-      # Smart Split
-      {
-        key = "<leader>sv";
-        mode = "n";
-        silent = true;
-        action = "<cmd>vsplit<CR>";
-        desc = "Split Vertical";
-      }
-      {
-        key = "<leader>sh";
-        mode = "n";
-        silent = true;
-        action = "<cmd>split<CR>";
-        desc = "Split Horizontal";
-      }
-      {
-        key = "<leader>sq";
-        mode = "n";
-        silent = true;
-        action = "<cmd>q<CR>";
-        desc = "Close Split";
-      }
-
-      # Treesitter
-      {
-        key = "<leader>tc";
-        mode = "n";
-        silent = true;
-        action = "<cmd>TSContext toggle<CR>";
-        desc = "Toggle the Treesitter context";
-      }
 
       # Floatterm
       #{

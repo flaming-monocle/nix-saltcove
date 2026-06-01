@@ -1,4 +1,4 @@
 *.xcf
-*.jpg
-*.png
+#*.jpg
+#*.png
 *.txt

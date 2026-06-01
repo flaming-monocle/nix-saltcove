@@ -23,6 +23,6 @@
     ./treesitter.nix
     # ./undoTree.nix
     # ./yanky.nix
-    ./zen.nix
+    # ./zen.nix # Not working!
   ];
 }

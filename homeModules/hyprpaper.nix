@@ -1,33 +1,38 @@
-{ config, osConfig, ... }:
+{
+  lib,
+  osConfig,
+  ...
+}:
 let
-  host = osConfig.networking.hostName;
+  inherit (osConfig.networking) hostName;
+
+  activeWallpaper = {
+    left = "mossy-l.png";
+    right = "mossy-r.png";
+    bifrost = "mossy.jpg";
+  };
 in
 {
-	services.hyprpaper = {
+  # I'm the only one using Hyprpaper, so no user conditionals here
+  # If that changes, the `lib.mkIf`s will go deeper
+  services.hyprpaper = {
     enable = true;
-    settings = {
-      splash = false;
-      wallpaper = if host == "snowblack" then [
-        {
-					monitor = "DP-3";
-					# path = "./wallpapers/bigsur-night-l.png";
-          path = "/etc/nixos/wallpapers/west-l.png";
-					fit_mode = "fill";
-				}
-				{
-					monitor = "DP-1";
-					# path = "./wallpapers/bigsur-night-r.png";
-					path = "/etc/nixos/wallpapers/west-r.png";
-					fit_mode = "fill";
-				}
-			] else [
-        {
-          monitor = "eDP-1";
-          # path = "./wallpapers/bigsur-night.jpg";
-					path = "/etc/nixos/wallpapers/west.jpg";
-          fit_mode = "fill";
-        }
-      ];
-    };      
-	};
+    settings = lib.mkMerge [
+      {
+        splash = false;
+        # preload = "./../wallpapers/*";
+      }
+      (lib.mkIf (hostName == "snowblack") {
+        wallpaper = [
+          "DP-3, /etc/nixos/wallpapers/${activeWallpaper.left}"
+          "DP-1, /etc/nixos/wallpapers/${activeWallpaper.right}"
+        ];
+      })
+      (lib.mkIf (hostName == "bifrost") {
+        wallpaper = [
+          "eDP-1, /etc/nixos/wallpapers/${activeWallpaper.bifrost}"
+        ];
+      })
+    ];
+  };
 }

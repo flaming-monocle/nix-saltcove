@@ -1,15 +1,11 @@
 {
   pkgs,
-  # osConfig,
-  # lib,
+  osConfig,
+  lib,
   ...
 }:
-# let
-#   inherit (lib) mkOption types;
-#   host = osConfig.networking.hostname;
-# in
 {
-  #-- User Settings --#
+  # Unified settings per-user across hosts
   users.users = {
     kobi = {
       isNormalUser = true;
@@ -22,10 +18,19 @@
       shell = pkgs.zsh;
     };
   };
-
   programs.zsh.enable = true;
 
-  #-- Home Manager --#
+  # When changing any wallpaper settings, check ./.. heirarchy!
+  custom.wallpaper = lib.mkMerge [
+    (lib.mkIf (osConfig.networking.hostName == "snowblack") {
+      left = "blackout-l.png";
+      right = "blackout-r.png";
+    })
+    (lib.mkIf (osConfig.networking.hostName == "bifrost") {
+      bifrost = "blackout.png";
+    })
+  ];
+
   home-manager = {
     users.kobi =
       { stylix, ... }:
@@ -39,7 +44,6 @@
           #./../homeModules/freecad.nix
           ./../homeModules/gaming.nix
           ./../homeModules/gimp.nix
-          ./../homeModules/git.nix
           ./../homeModules/waylandDesktop/hyprland.nix
           ./../homeModules/hyprpaper.nix
           ./../homeModules/hyprpolkit.nix
@@ -62,6 +66,17 @@
           ./../homeModules/waybar.nix
           ./../homeModules/zsh.nix
         ];
+        programs.git = {
+          enable = true;
+          settings = {
+            user = {
+              name = "flaming-monocle";
+              email = "kobi.l.oreilly@gmail.com";
+            };
+            credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
+            init.defaultBranch = "main";
+          };
+        };
       };
   };
 }

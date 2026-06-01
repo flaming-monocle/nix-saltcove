@@ -11,26 +11,28 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #nixvim = {
-    #  url = "github:nix-community/nixvim/main";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ttSchemes = {
+      url = "github:tinted-theming/schemes";
+      flake = false;
     };
   };
 
   outputs =
     {
-      self,
+      # self,
       nixpkgs,
       home-manager,
       nvf,
       stylix,
+      # tinted-theming,
       ...
     }@inputs:
     let
+      inherit (nixpkgs.lib) nixosSystem;
       system = "x86_64-linux";
       specialArgs = inputs // {
         inherit system;
@@ -41,25 +43,23 @@
           home-manager = {
             useUserPackages = true;
             extraSpecialArgs = { inherit stylix; };
-            # backupFileExtension = "backup";
             backupCommand = "mv /bin/trash";
           };
         }
         nvf.nixosModules.default
+        # base16.nixosModule
       ];
     in
     {
       nixosConfigurations = {
-        snowblack = nixpkgs.lib.nixosSystem {
-          specialArgs = specialArgs;
-          system = system;
+        snowblack = nixosSystem {
+          inherit specialArgs system;
           modules = shared-modules ++ [
             ./hosts/snowblack.nix
           ];
         };
-        bifrost = nixpkgs.lib.nixosSystem {
-          specialArgs = specialArgs;
-          system = system;
+        bifrost = nixosSystem {
+          inherit specialArgs system;
           modules = shared-modules ++ [
             ./hosts/bifrost.nix
           ];

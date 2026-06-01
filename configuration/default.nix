@@ -60,6 +60,7 @@
   # Locale
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings.LC_TIME = "en_DK.UTF-8";
 
   system.stateVersion = "25.11"; # DO NOT MODIFY
 }

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   home.packages = with pkgs; [
     kitty
@@ -23,7 +28,7 @@
         confirm_os_window_close = 0;
         shell_integration = "enabled";
         shell = "zsh";
-        
+
         # Visuals
         #background_opacity = 0.5;
         inactive_text_alpha = 1;
@@ -37,11 +42,15 @@
         "map ctrl+equal" = "change_font_size all +0.5";
         "map ctrl+minus" = "change_font_size all -0.5";
       }
-      
+
       # Kobi-specific binds
       (lib.mkIf (config.home.username == "kobi") {
         "map ctrl+y" = "copy_to_clipboard";
         "map ctrl+p" = "paste_from_clipboard";
+        "map alt+h" = "neighboring_window left";
+        "map alt+j" = "neighboring_window down";
+        "map alt+k" = "neighboring_window up";
+        "map alt+l" = "neighboring_window right";
       })
 
       # Carlisle-specific settings

@@ -17,7 +17,7 @@
     gnutar
     ffmpeg
 
-    # CLU utils
+    # CLI utils
     gnugrep
     ripgrep
     fzf

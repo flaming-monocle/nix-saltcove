@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   user = config.home.username;
 in
@@ -12,10 +17,8 @@ in
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    
-    history = {
-      size = 10000;
-    };
+
+    history.size = 10000;
 
     shellAliases = lib.mkMerge [
       {
@@ -46,7 +49,8 @@ in
         img = "qimgv";
         stash = "cd /home/kobi/Media && ./stash-linux";
         H = "Hyprland";
-        sessionquit = "loginctl terminate-user carlisle";
+        sessionquit = "loginctl terminate-user kobi";
+        zet = "cd ~/Documents/secondbrain/'002 Zettelkasten' && vim $(date +'%y%m%d %H:%M')";
       })
       # Carlisle-specific binds
       (lib.mkIf (user == "carlisle") {
@@ -61,24 +65,24 @@ in
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ 
+      plugins = [
         "alias-finder"
-	      "common-aliases"
-	      "colored-man-pages"
-	      "fzf"
-	      "kitty"
-	      "vscode"
+        "common-aliases"
+        "colored-man-pages"
+        "fzf"
+        "kitty"
+        "vscode"
       ];
     };
 
     initContent = ''
-			gc() { git commit -m "$*" }
-			sgc() { sudo git commit -m "$*" }
-                        gp() { grep "$*" }
-                        gpr() { grep -r "$*" }
-                        gpl() { grep -l "$*" }
-                        gplr() {grep -lr "$*" }
-                        gprl() {grep -lr "$*" }
-		'';
+      			gc() { git commit -m "$*" }
+      			sgc() { sudo git commit -m "$*" }
+            gp() { grep "$*" }
+            gpr() { grep -r "$*" }
+            gpl() { grep -l "$*" }
+            gplr() {grep -lr "$*" }
+            gprl() {grep -lr "$*" }
+      		'';
   };
 }
