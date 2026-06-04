@@ -16,12 +16,7 @@ let
   # inherit (config.custom.stylix)
   #   colors
   #   ;
-  inherit (osConfig.networking)
-    hostName
-    ;
-
-  hostSnowblack = osConfig.networking.hostName == "snowblack";
-  hostBifrost = osConfig.networking.hostName == "bifrost";
+  inherit (osConfig.networking) hostName;
 
   mainMonitor = "DP-3";
   portraitMonitor = "DP-1";
@@ -91,10 +86,7 @@ in
         bind = [
           # Applications
           "$mod, Return, exec, $terminal"
-<<<<<<< HEAD
           #"$mod, CAPS, exec, $terminal" # TODO work on this
-=======
->>>>>>> 3506c48790c9f37400338a7f2e132122194bf8f3
           "$mod, Q, killactive"
           "$mod, R, exec, $fileManager"
           ''$mod, V, exec, $terminal -e "vim"''
@@ -148,10 +140,9 @@ in
         ]
         ++ config.custom.hyprland.layoutBindm;
 
-<<<<<<< HEAD
-=======
         # Laptop gesture controls in scrolling layout
-        gesture = mkIf hostBifrost [
+        # TODO up and down both register as up
+        gesture = mkIf (hostName == "bifrost") [
           "3, left, dispatcher, layoutmsg, focus l"
           "3, down, workspace, m+1"
           "3, up, workspace, m-1"
@@ -160,7 +151,6 @@ in
         ];
         # workspace_swipe_invert = false;
 
->>>>>>> 3506c48790c9f37400338a7f2e132122194bf8f3
         decoration = {
           rounding = 5;
           active_opacity = 1.0;
@@ -175,21 +165,6 @@ in
           };
         };
 
-<<<<<<< HEAD
-        env =
-          if host == "snowblack" then
-            [
-              #"LIBVA_DRIVER_NAME,nvidia"
-              #"__GLX_VENDOR_LIBRARY_NAME,nvidia"
-              "HYPRCURSOR_THEME,rose-pine-hyprcursor"
-              "HYPRCURSOR_SIZE,25"
-            ]
-          else
-            [
-              "HYPRCURSOR_THEME,rose-pine-hyprcursor"
-              "HYPRCURSOR_SIZE,20"
-            ];
-=======
         env = mkMerge [
           (mkIf (hostName == "snowblack") [
             #"LIBVA_DRIVER_NAME,nvidia"
@@ -202,7 +177,6 @@ in
             "HYPRCURSOR_SIZE,35"
           ])
         ];
->>>>>>> 3506c48790c9f37400338a7f2e132122194bf8f3
 
         exec-once = [
           "systemctl --user import-environment WAYLAND_DISPLAY XDG_RUNTIME_DIR HYPRLAND_INSTANCE_SIGNATURE"
@@ -212,20 +186,13 @@ in
         ];
 
         general = {
-          resize_on_border = false;
-          allow_tearing = false;
-
-<<<<<<< HEAD
-          "col.active_border" = mkForce "rgb(${colors.base0C}) rgb(${colors.base0E}) 30deg";
-          "col.inactive_border" = mkForce "rgb(${colors.base04}) rgb(${colors.base01}) 30deg";
-=======
-          # "col.active_border" = mkForce "rgb(${colors.base0C}) rgb(${colors.base0E}) 30deg";
-          # "col.inactive_border" = mkForce "rgb(${colors.base04}) rgb(${colors.base01}) 30deg";
->>>>>>> 3506c48790c9f37400338a7f2e132122194bf8f3
-
           gaps_in = "4";
           gaps_out = "8,8,0,8";
           border_size = "2";
+          resize_on_border = false;
+          allow_tearing = false;
+          # "col.active_border" = mkForce "rgb(${colors.base0C}) rgb(${colors.base0E}) 30deg";
+          # "col.inactive_border" = mkForce "rgb(${colors.base04}) rgb(${colors.base01}) 30deg";
         };
 
         input = {
@@ -238,34 +205,13 @@ in
           # "disable_hyprland_logo" = "true";
           "disable_splash_rendering" = "true";
         };
-<<<<<<< HEAD
-
-        monitor =
-          if host == "snowblack" then
-            [
-              "${portraitMonitor}, 2560x1080@60, 3440x-660, 1, transform, 3"
-              "${mainMonitor}, 3440x1440@143.92, 0x0, 1"
-            ]
-          else if host == "bifrost" then
-            [
-              "${bifrostMonitor}, 1920x1080@60, 0x0, 1"
-            ]
-          else
-            [ ];
-
-        windowrule = [
-          # TODO this is broken
-          # "match:class obsidian, opacity 0.95 override 0.95 override"
-        ]
-        ++ config.custom.hyprland.layoutWindowrule;
-=======
 
         monitor = mkMerge [
-          (mkIf hostSnowblack [
+          (mkIf (hostName == "snowblack") [
             "${portraitMonitor}, 2560x1080@60, 3440x-660, 1, transform, 3"
             "${mainMonitor}, 3440x1440@143.92, 0x0, 1"
           ])
-          (mkIf hostBifrost [ "${bifrostMonitor}, 1920x1080@60, 0x0, 1" ])
+          (mkIf (hostName == "bifrost") [ "${bifrostMonitor}, 1920x1080@60, 0x0, 1" ])
         ];
         #  if hostSnowblack then
         #    [
@@ -284,7 +230,6 @@ in
         # "match:class obsidian, opacity 0.95 override 0.95 override"
         # ]
         # ++ config.custom.hyprland.layoutWindowrule;
->>>>>>> 3506c48790c9f37400338a7f2e132122194bf8f3
 
         workspace = [ ] ++ config.custom.hyprland.layoutWorkspace;
       };

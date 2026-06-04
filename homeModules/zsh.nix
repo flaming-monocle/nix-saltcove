@@ -1,48 +1,78 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   ...
 }:
 let
-  user = config.home.username;
+  inherit (lib) mkIf mkMerge;
+  inherit (osConfig.networking) hostName;
+  inherit (config.home) username;
 in
 {
   home.packages = with pkgs; [
     oh-my-zsh
   ];
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
+  programs.zsh = mkMerge [
+    {
+      # Unconditional
+      enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
 
-    history.size = 10000;
+      history.size = 10000;
 
-    shellAliases = lib.mkMerge [
-      {
+      shellAliases = {
         # Universal
         c = "clear";
         cs = "clear;ls";
         ct = "clear;tree";
-        la = "ls -a";
-        ll = "ls -l";
-        lsa = "ls -laFh";
-        root = "cd /";
+        lsa = "ls -a";
+        lsl = "ls -l";
+        lsla = "ls -la";
         ".." = "cd ..";
         "..." = "cd ..; cd ..;";
         "...." = "cd ..; cd ..; cd ..;";
-        ga = "git add .";
-        ggpull = ''git pull origin "$BRANCH_NAME"'';
-        ggpush = ''git push origin "$BRANCH_NAME"'';
-        nixls = ''cd /etc/nixos && tree -L 2 -P "*.nix"'';
-        nixrs = "cd /etc/nixos && git add . && sudo nixos-rebuild switch --flake";
-        pavu = "pavucontrol";
-        r = "ranger";
-      }
-      # Kobi-specific binds
-      (lib.mkIf (user == "kobi") {
+      };
+
+      setOptions = [ "HIST_IGNORE_ALL_DUPS" ];
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+          "alias-finder"
+          "common-aliases"
+          "colored-man-pages"
+          "fzf"
+          "kitty"
+          "vscode"
+        ];
+      };
+
+      initContent = ''
+        gadd() { git add . }
+        gcommit() { git commit -m "$*" }
+        gpush() { git pull origin "$BRANCH_NAME" }
+        gpull() { git pull origin "$BRANCH_NAME" }
+        glog() { git log --oneline --graph --all --decorate }
+        gstatus() { git status }
+        gdiff() { git diff }
+
+        grep() { grep "$*" }
+        grepr() { grep -r "$*" }
+        grepl() { grep -l "$*" }
+        greplr() { grep -lr "$*" }
+        greprl() { grep -lr "$*" }
+
+        nixls() { cd /etc/nixos && tree -L 2 -P "*.nix" }
+        nixrs() { cd /etc/nixos && git add . && sudo nixos-rebuild switch --flake }
+      '';
+    }
+    (mkIf (username == "kobi") {
+      shellAliases = {
         cim = "vim";
         ivm = "vim";
         svim = "sudoedit";
@@ -51,38 +81,34 @@ in
         H = "Hyprland";
         sessionquit = "loginctl terminate-user kobi";
         zet = "cd ~/Documents/secondbrain/'002 Zettelkasten' && vim $(date +'%y%m%d %H:%M')";
-      })
-      # Carlisle-specific binds
-      (lib.mkIf (user == "carlisle") {
+        pavu = "pavucontrol";
+        r = "ranger";
+      };
+      initContent = ''
+        Hyprland
+      '';
+    })
+    (mkIf (username == "carlisle") {
+      shellAliases = {
         K = "startplasma-wayland";
         sessionquit = "loginctl terminate-user carlisle";
-      })
-    ];
-
-    setOptions = [
-      "HIST_IGNORE_ALL_DUPS"
-    ];
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "alias-finder"
-        "common-aliases"
-        "colored-man-pages"
-        "fzf"
-        "kitty"
-        "vscode"
-      ];
-    };
-
-    initContent = ''
-      			gc() { git commit -m "$*" }
-      			sgc() { sudo git commit -m "$*" }
-            gp() { grep "$*" }
-            gpr() { grep -r "$*" }
-            gpl() { grep -l "$*" }
-            gplr() {grep -lr "$*" }
-            gprl() {grep -lr "$*" }
-      		'';
-  };
+      };
+      initContent = ''
+        startplasma-wayland
+      '';
+    })
+    (mkIf (username == "tui") {
+      shellAliases = {
+        svim = "sudoedit";
+        H = "Hyprland";
+        sessionquit = "loginctl terminate-user tui";
+        zet = "cd ~/Documents/secondbrain/'002 Zettelkasten' && vim $(date +'%y%m%d %H:%M')";
+      };
+      initContent = ''
+        Hyprland
+      '';
+    })
+    (mkIf (hostName == "snowblack") { })
+    (mkIf (hostName == "bifrost") { })
+  ];
 }

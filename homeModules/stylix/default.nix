@@ -17,44 +17,12 @@ let
   # Sea Shells - github:tinted-theming/schemes/sea-shells.yaml
   # Charcoal - github:tinted-theming/schemes/base16/charcoal
 
-  # `external = true;` installs the selected scheme
-  # `external = flase;` generates the theme locally
-  theme = {
-    # mkMerge [
-    #   (mkIf (username == "kobi") {
-    #     # TODO: https or github: notation
-    scheme = ./../../colorschemes/darkmoss.yaml;
-    genSource = ./../../wallpapers/mossy.jpg;
-    external = true;
-    genPolarity = "dark";
-    termOpacity = 0.6;
-    #   })
-    #   (mkIf (username == "carlisle") {
-    #     scheme = "github:tinted-theming/schemes/base24/catppuccin-mocha.yaml";
-    #     genSource = "west.jpg";
-    #     external = true;
-    #     genPolarity = "dark";
-    #     termOpacity = 0.7;
-    #   })
-    #   (mkIf (username == "tui") {
-    #     scheme = "github:tinted-theming/schemes/base16/charcoal";
-    #     genSource = "";
-    #     external = false;
-    #     genPolarity = "dark";
-    #     termOpacity = 1.0;
-    #   })
-    # ];
-  };
 in
 {
   stylix = mkMerge [
     #-- Unconditional --#
     {
       enable = true;
-      image = theme.genSource;
-      polarity = theme.genPolarity;
-      opacity.terminal = theme.termOpacity;
-
       # targets = {
       #   starship.enable = false;
       #   neovim.enable = false;
@@ -62,7 +30,6 @@ in
       #   vim.enable = false;
       #   nvim.enable = false;
       # };
-
       fonts = {
         serif = {
           package = pkgs.dejavu_fonts;
@@ -83,12 +50,34 @@ in
       };
     }
     #-- Conditional --#
-    (mkIf theme.external {
-      base16Scheme = theme.scheme;
+    (mkIf (username == "kobi") {
+      # tinted-theming .yaml file (comment to generate locally)
+      base16Scheme = ./../../colorschemes/darkmoss.yaml;
+      # Local generation
+      image = ./../../wallpapers/mossy.jpg;
+      polarity = "dark";
+      # Other
+      opacity.terminal = 0.6;
+    })
+    (mkIf (username == "carlisle") {
+      # tinted-theming .yaml file (comment to generate locally)
+      base16Scheme = ./../../colorschemes/catppuccin-mocha.yaml;
+      # Local generation
+      image = ./../../wallpapers/west.jpg;
+      polarity = "dark";
+      # Other
+      opacity.terminal = 0.7;
+    })
+    (mkIf (username == "tui") {
+      # tinted-theming .yaml file (comment to generate locally)
+      base16Scheme = ./../../colorschemes/charcoal-dark;
+      # Local generation
+      image = ./../../wallpapers/mossy.jpg;
+      polarity = "dark";
+      # Other
+      opacity.terminal = 0.6;
     })
   ];
-
   # If this isn't set, rebuilding throws a warning about choosing a version
   gtk.gtk4.theme = null;
-
 }
