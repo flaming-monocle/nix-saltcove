@@ -88,11 +88,11 @@ in
       };
       initContent = ''
         zet() {
-          dateTime="$(date +'%y%m%d-%hh:%mm')"
+          dateTime="$(date +'%y-%m-%d,%H:%m')"
           title="$*"
           cd ~/Documents/secondbrain/'002 Zettelkasten'
           cp "zettelkasten-template.md" "$dateTime-$title.md"
-          vim +9 "$dateTime-$title.md"
+          vim +10 "$dateTime-$title.md"
         }
       '';
     })
