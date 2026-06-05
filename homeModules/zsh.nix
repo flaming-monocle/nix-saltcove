@@ -30,13 +30,23 @@ in
         c = "clear";
         cs = "clear;ls";
         ct = "clear;tree";
+
         lsa = "ls -a";
         lsl = "ls -l";
         lsla = "ls -la";
+
         ".." = "cd ..";
         "..." = "cd ..; cd ..;";
         "...." = "cd ..; cd ..; cd ..;";
-        "sudo!" = "sudo !!";
+
+        gpush = ''git pull origin "$BRANCH_NAME"'';
+        gpull = ''git pull origin "$BRANCH_NAME"'';
+        glog = "git log --oneline --graph --all --decorate";
+        gstatus = "git status";
+        gdiff = "git diff";
+
+        nixls = "cd /etc/nixos && tree -L 2 -P '*.nix'";
+        nixrs = "cd /etc/nixos && git add . && sudo nixos-rebuild switch --flake";
       };
 
       setOptions = [ "HIST_IGNORE_ALL_DUPS" ];
@@ -56,20 +66,12 @@ in
       initContent = ''
         gadd() { git add "$*" }
         gcommit() { git commit -m "$*" }
-        gpush() { git pull origin "$BRANCH_NAME" }
-        gpull() { git pull origin "$BRANCH_NAME" }
-        glog() { git log --oneline --graph --all --decorate }
-        gstatus() { git status }
-        gdiff() { git diff }
 
         gp() { grep "$*" }
         gpr() { grep -r "$*" }
         gpl() { grep -l "$*" }
         gplr() { grep -lr "$*" }
         gprl() { grep -lr "$*" }
-
-        nixls() { cd /etc/nixos && tree -L 2 -P "*.nix" }
-        nixrs() { cd /etc/nixos && git add . && sudo nixos-rebuild switch --flake }
       '';
     }
     (mkIf (username == "kobi") {
@@ -79,14 +81,19 @@ in
         svim = "sudoedit";
         img = "qimgv";
         stash = "cd /home/kobi/Media && ./stash-linux";
-        H = "Hyprland";
+        H = "start-hyprland";
         sessionquit = "loginctl terminate-user kobi";
-        zet = "cd ~/Documents/secondbrain/'002 Zettelkasten' && vim $(date + '%y%m%d-' + '$*')";
         pavu = "pavucontrol";
         r = "ranger";
       };
       initContent = ''
-        Hyprland
+        zet() {
+          dateTime="$(date +'%y%m%d-%hh:%mm')"
+          title="$*"
+          cd ~/Documents/secondbrain/'002 Zettelkasten'
+          cp "zettelkasten-template.md" "$dateTime-$title.md"
+          vim +9 "$dateTime-$title.md"
+        }
       '';
     })
     (mkIf (username == "carlisle") {
@@ -94,20 +101,16 @@ in
         K = "startplasma-wayland";
         sessionquit = "loginctl terminate-user carlisle";
       };
-      initContent = ''
-        startplasma-wayland
-      '';
+      initContent = "";
     })
     (mkIf (username == "tui") {
       shellAliases = {
         svim = "sudoedit";
-        H = "Hyprland";
+        H = "start-hyprland";
         sessionquit = "loginctl terminate-user tui";
         zet = "cd ~/Documents/secondbrain/'002 Zettelkasten' && vim $(date +'%y%m%d %H:%M')";
       };
-      initContent = ''
-        Hyprland
-      '';
+      initContent = "";
     })
     (mkIf (hostName == "snowblack") { })
     (mkIf (hostName == "bifrost") { })
