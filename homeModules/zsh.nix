@@ -36,6 +36,7 @@ in
         ".." = "cd ..";
         "..." = "cd ..; cd ..;";
         "...." = "cd ..; cd ..; cd ..;";
+        "sudo!" = "sudo !!";
       };
 
       setOptions = [ "HIST_IGNORE_ALL_DUPS" ];
@@ -53,7 +54,7 @@ in
       };
 
       initContent = ''
-        gadd() { git add . }
+        gadd() { git add "$*" }
         gcommit() { git commit -m "$*" }
         gpush() { git pull origin "$BRANCH_NAME" }
         gpull() { git pull origin "$BRANCH_NAME" }
@@ -61,11 +62,11 @@ in
         gstatus() { git status }
         gdiff() { git diff }
 
-        grep() { grep "$*" }
-        grepr() { grep -r "$*" }
-        grepl() { grep -l "$*" }
-        greplr() { grep -lr "$*" }
-        greprl() { grep -lr "$*" }
+        gp() { grep "$*" }
+        gpr() { grep -r "$*" }
+        gpl() { grep -l "$*" }
+        gplr() { grep -lr "$*" }
+        gprl() { grep -lr "$*" }
 
         nixls() { cd /etc/nixos && tree -L 2 -P "*.nix" }
         nixrs() { cd /etc/nixos && git add . && sudo nixos-rebuild switch --flake }
@@ -80,7 +81,7 @@ in
         stash = "cd /home/kobi/Media && ./stash-linux";
         H = "Hyprland";
         sessionquit = "loginctl terminate-user kobi";
-        zet = "cd ~/Documents/secondbrain/'002 Zettelkasten' && vim $(date +'%y%m%d %H:%M')";
+        zet = "cd ~/Documents/secondbrain/'002 Zettelkasten' && vim $(date + '%y%m%d-' + '$*')";
         pavu = "pavucontrol";
         r = "ranger";
       };
