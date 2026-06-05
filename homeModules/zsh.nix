@@ -46,7 +46,6 @@ in
         gdiff = "git diff";
 
         nixls = "cd /etc/nixos && tree -L 2 -P '*.nix'";
-        nixrs = "cd /etc/nixos && git add . && sudo nixos-rebuild switch --flake";
       };
 
       setOptions = [ "HIST_IGNORE_ALL_DUPS" ];
@@ -64,14 +63,26 @@ in
       };
 
       initContent = ''
-        gadd() { git add "$*" }
-        gcommit() { git commit -m "$*" }
+        gadd() {
+          git add "$*"
+          git status 
+        }
+        gcommit() {git commit -m "$*"}
 
-        gp() { grep "$*" }
-        gpr() { grep -r "$*" }
-        gpl() { grep -l "$*" }
-        gplr() { grep -lr "$*" }
-        gprl() { grep -lr "$*" }
+        gp() {grep "$*"}
+        gpr() {grep -r "$*"}
+        gpl() {grep -l "$*"}
+        gplr() {grep -lr "$*"}
+        gprl() {grep -lr "$*"}
+
+        nixrs() {
+          wd=$(pwd)
+          cd /etc/nixos 
+          git add .
+          git status
+          sudo nixos-rebuild switch --flake
+          cd $wd
+        }
       '';
     }
     (mkIf (username == "kobi") {
@@ -88,7 +99,7 @@ in
       };
       initContent = ''
         zet() {
-          dateTime="$(date +'%y-%m-%d,%H:%m')"
+          dateTime="$(date +'%y-%m-%d,%H:%M')"
           title="$*"
           cd ~/Documents/secondbrain/'002 Zettelkasten'
           cp "zettelkasten-template.md" "$dateTime-$title.md"
