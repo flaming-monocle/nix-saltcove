@@ -185,7 +185,6 @@ in
           windowrule = [
             # TODO this is broken
             # "match:class obsidian, opacity 0.95 override 0.95 override"
-            "match:class kitty, dispatcher, layoutmsg, column_width = 0.33"
           ];
           # ++ config.custom.hyprland.layoutWindowrule;
 
