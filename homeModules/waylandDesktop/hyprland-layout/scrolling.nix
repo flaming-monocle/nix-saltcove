@@ -28,26 +28,16 @@ in
           "$mod, K, workspace, -${wsSwapVal}"
           # TODO Make per-monitor
           # TODO column-resize keybinds:
-          "$mod, -, layoutmsg, colresize -conf"
-          "$mod, =, layoutmsg, colresize +conf"
+          "$mod, [, layoutmsg, colresize -conf"
+          "$mod, ], layoutmsg, colresize +conf"
         ];
       };
-
       wayland.windowManager.hyprland = {
         settings = {
           # no focus change on hover, ref general.no_focus_fallback
           input."follow_mouse" = 2;
           general = {
             layout = "scrolling";
-            # mouse-over scrolling, but not focusing
-            no_focus_fallback = true;
-          };
-          scrolling = {
-            # Centers focused window in scroll
-            # focus_fit_method = 0;
-            # column_width = 0.5;
-            # fullscreen_on_one_column = false;
-            # wrap_focus = true;
           };
         };
       };
@@ -61,22 +51,21 @@ in
           else
             "${toString ws}, monitor:${mainMonitor}, layoutopt:direction:right, default:true"
         ) wsRange;
-
-        layoutWindowrule = [
-          # TODO this is broken
-          # "match:class kitty, column_width = 0.33"
-        ];
+        # layoutWindowrule = [
+        #   # TODO this is broken
+        #   # "match:class kitty, column_width = 0.33"
+        # ];
       };
-
       wayland.windowManager.hyprland = {
         settings = {
+          # mouse-over scrolling, but not focusing
+          general.no_focus_fallback = true;
           scrolling = {
             column_width = 0.33;
             explicit_column_widths = "0.125, 0.25, 0.33, 0.5, 0.66, 0.75, 0.875, 1";
             fullscreen_on_one_column = false;
-            wrap_focus = false;
             # Focused window stays centered in viewport
-            focus_fit_method = 0;
+            focus_fit_method = 1;
           };
         };
       };
@@ -87,17 +76,32 @@ in
         layoutWorkspace = map (
           ws: "${toString ws}, monitor:${bifrostMonitor}, layoutopt:direction:right, default:true"
         ) wsRange;
+        # layoutWindowrule = [
+        #   # TODO this is broken
+        #   # "match:class kitty, column_width = 0.33"
+        # ];
       };
       wayland.windowManager.hyprland = {
         settings = {
+          # mouse-over scrolling, but not focusing
+          general.no_focus_fallback = true;
           scrolling = {
             column_width = 0.5;
-            explicit_column_widths = "0.125, 0.25, 0.33, 0.5, 0.66, 0.75, 0.875, 1";
+            explicit_column_widths = "0.33, 0.5, 0.66, 1";
             fullscreen_on_one_column = true;
-            wrap_focus = false;
             # Newly focused windows move within and push viewport
             focus_fit_method = 1;
           };
+          # Laptop gesture controls in scrolling layout
+          # TODO up and down both register as up
+          gesture = [
+            "3, left, dispatcher, layoutmsg, focus l"
+            "3, down, workspace, m+1"
+            "3, up, workspace, m-1"
+            "3, right, dispatcher, layoutmsg, focus r"
+            # "3, vertical, workspace"
+          ];
+          # workspace_swipe_invert = false;
         };
       };
     })
