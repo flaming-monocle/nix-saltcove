@@ -1,10 +1,10 @@
-{ osConfig, ... }:
-let 
-  hostname = osConfig.networking.hostName;
-  mainMonitor = if hostname == "snowblack" then [
-    "DP-3"
-  ] else [ 
-    "eDP-1" 
+{ osConfig, lib, ... }:
+let
+  inherit (lib) mkMerge mkIf;
+  inherit (osConfig.networking) hostName;
+  mainMonitor = mkMerge [
+    (mkIf (hostName == "snowblack") "DP-3")
+    (mkIf (hostName == "bifrost") "eDP-1")
   ];
 in
 {
@@ -18,24 +18,28 @@ in
         spacing = 4;
         output = mainMonitor;
 
-        modules-left = if hostname == "snowblack" then [
+        modules-left = mkMerge [
+          [
             "custom/nixos"
             "clock"
             "hyprland/workspaces"
-          ] else [
-            "custom/nixos"
-            "clock"
-            "hyprland/workspaces"
-          ];
-        modules-right = if hostname == "snowblack" then [
-            "pulseaudio"
-            "custom/notification"
-          ] else [
+          ]
+          (mkIf (hostName == "snowblack") [ ])
+          (mkIf (hostName == "bifrost") [ ])
+        ];
+
+        modules-right = mkMerge [
+          (mkIf (hostName == "bifrost") [
             "backlight"
             "battery"
+          ])
+          [
             "pulseaudio"
             "custom/notification"
-          ];
+          ]
+          (mkIf (hostName == "snowblack") [ ])
+        ];
+
         "custom/nixos" = {
           format = " ";
           tooltip = false;
@@ -70,9 +74,9 @@ in
             "warning" = 40;
             "critical" = 20;
           };
-          format  = "{icon} {capacity}%";
-          format-charging  = "󰂄 {capacity}%";
-          # format-good = ""; 
+          format = "{icon} {capacity}%";
+          format-charging = "󰂄 {capacity}%";
+          # format-good = "";
           # format-full = "";
           # An empty format will hide the module
           format-icons = [
