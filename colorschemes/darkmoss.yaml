@@ -11,11 +11,11 @@ palette:
   base05: "#c7c7a5"
   base06: "#e3e3c8"
   base07: "#e1eaef"
-  base08: "#ff4658"
-  base09: "#e6db74"
-  base0A: "#fdb11f"
-  base0B: "#499180"
-  base0C: "#66d9ef"
-  base0D: "#498091"
-  base0E: "#9bc0c8"
-  base0F: "#d27b53"
+  base08: "#ff4658" # Fluorescent red
+  base09: "#e6db74" # Vibrant green
+  base0A: "#fdb11f" # Bright yellow
+  base0B: "#499180" # Mossy pond
+  base0C: "#66d9ef" # Noon sky
+  base0D: "#498091" # Shaded pond
+  base0E: "#9bc0c8" # Thick fog
+  base0F: "#d27b53" # Iron clay

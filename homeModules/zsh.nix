@@ -69,11 +69,11 @@ in
         }
         gcommit() {git commit -m "$*"}
 
-        gp() {grep "$*"}
-        gpr() {grep -r "$*"}
-        gpl() {grep -l "$*"}
-        gplr() {grep -lr "$*"}
-        gprl() {grep -lr "$*"}
+        g() {grep "$*"}
+        gr() {grep -r "$*"}
+        gl() {grep -l "$*"}
+        glr() {grep -lr "$*"}
+        grl() {grep -lr "$*"}
 
         nixrs() {
           wd=$(pwd)
@@ -92,7 +92,7 @@ in
         svim = "sudoedit";
         img = "qimgv";
         stash = "cd /home/kobi/Media && ./stash-linux";
-        H = "start-hyprland";
+        H = "cd && start-hyprland";
         sessionquit = "loginctl terminate-user kobi";
         pavu = "pavucontrol";
         r = "ranger";
@@ -109,7 +109,7 @@ in
     })
     (mkIf (username == "carlisle") {
       shellAliases = {
-        K = "startplasma-wayland";
+        K = "cd && startplasma-wayland";
         sessionquit = "loginctl terminate-user carlisle";
       };
       initContent = "";
@@ -117,7 +117,7 @@ in
     (mkIf (username == "tui") {
       shellAliases = {
         svim = "sudoedit";
-        H = "start-hyprland";
+        H = "cd && start-hyprland";
         sessionquit = "loginctl terminate-user tui";
         zet = "cd ~/Documents/secondbrain/'002 Zettelkasten' && vim $(date +'%y%m%d %H:%M')";
       };
