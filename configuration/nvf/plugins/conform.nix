@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   programs.nvf.settings.vim = {
     formatter.conform-nvim = {
       enable = true;
@@ -15,26 +14,11 @@
           nix = [ "nixfmt-rfc-style" ];
           rust = [ "rustfmt" ];
           python = [ "black" ];
-          javascript = [
-            "prettierd"
-            "prettier"
-          ];
-          yaml = [
-            "perttierd"
-            "prettier"
-          ];
-          json = [
-            "perttierd"
-            "prettier"
-          ];
-          jsonc = [
-            "perttierd"
-            "prettier"
-          ];
-          markdown = [
-            "perttierd"
-            "prettier"
-          ];
+          javascript = [ "prettier" ];
+          yaml = [ "prettier" ];
+          json = [ "prettier" ];
+          jsonc = [ "prettier" ];
+          markdown = [ "prettier" ];
           text = [ "trim_whitespace" ];
           dart_format = {
             args = [

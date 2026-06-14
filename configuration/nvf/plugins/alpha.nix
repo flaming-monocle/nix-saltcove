@@ -6,57 +6,52 @@
 let
   #stylixColors = config.lib.stylix.colors;
 
-  vaultDir = "/home/kobi/Documents/secondBrain/";
+  # vaultDir = "/home/kobi/Documents/secondBrain/";
+  # obsidianNew.__raw = ''
+  #   function()
+  #     local path = vim.fn.expand("${vaultDir}")
+  #     vim.cmd("cd " .. path)
+  #     vim.schedule(function()
+  #       vim.cmd("Obsidian new")
+  #     end)
+  #   end
+  # '';
+  # obsidianSearch.__raw = ''
+  #   function ()
+  #     require('telescope.builtin').find_files({
+  #       cwd = "${vaultDir}",
+  #       prompt_title = "󱓧  Vault Files",
+  #     })
+  #   end
+  # '';
+  # obsidianRestore.__raw = ''
+  #   function()
+  #     vim.cmd("cd ${vaultDir}")
+  #     require("persistence").load()
+  #     require("neo-tree")
+  #     vim.cmd("Neotree show")
+  #    end
+  # '';
+  # obsidianGrep.__raw = ''
+  #   function()
+  #     require('telescope.builtin').live_grep({
+  #       cwd = "${vaultDir}",
+  #       prompt_title = "󱎸  Search in Notes",
+  #     })
+  #   end
+  # '';
 
-  obsidianNew.__raw = ''
-    function()
-      local path = vim.fn.expand("${vaultDir}")
-      vim.cmd("cd " .. path)
-      vim.schedule(function()
-        vim.cmd("Obsidian new")
-      end)
-    end
-  '';
-
-  obsidianSearch.__raw = ''
-    function ()
-      require('telescope.builtin').find_files({
-        cwd = "${vaultDir}",
-        prompt_title = "󱓧  Vault Files",
-      })
-    end
-  '';
-
-  obsidianRestore.__raw = ''
-    function()
-      vim.cmd("cd ${vaultDir}")
-      require("persistence").load()
-      require("neo-tree")
-      vim.cmd("Neotree show")
-     end
-  '';
-
-  obsidianGrep.__raw = ''
-    function()
-      require('telescope.builtin').live_grep({
-        cwd = "${vaultDir}",
-        prompt_title = "󱎸  Search in Notes",
-      })
-    end
-  '';
-
-  projectRestore.__raw = ''
-    function()
-       vim.cmd("Telescope projects")
-       require("persistence").load()
-    end
-  '';
-
-  lastRestore.__raw = ''
-    function()
-      require("persistence").load()
-    end
-  '';
+  # projectRestore.__raw = ''
+  #   function()
+  #      vim.cmd("Telescope projects")
+  #      require("persistence").load()
+  #   end
+  # '';
+  # lastRestore.__raw = ''
+  #   function()
+  #     require("persistence").load()
+  #   end
+  # '';
 
   button = shortcut: desc: action: {
     type = "button";
@@ -215,7 +210,7 @@ in
         {
           type = "group";
           val = [
-            (button "R" "󰑓   Restore Last" lastRestore)
+            # (button "R" "󰑓   Restore Last" lastRestore)
             (button "n" "   New File" "ene | startinsert")
             (button "r" "   Recent Files" "Telescope oldfiles")
             (button "f" "   Find File" "Telescope find_files")
@@ -225,21 +220,21 @@ in
               type = "padding";
               val = 1;
             }
-            (button "k" "󰮋   New Note" obsidianNew)
-            (button "o" "󰮊   Restore Vault" obsidianRestore)
-            (button "l" "󰇈   Search Vault" obsidianSearch)
-            (button "h" "󱘟   Grep Vault" obsidianGrep)
-            {
-              type = "padding";
-              val = 1;
-            }
-            #(button "x" "   NixOS" #TODO)
-            (button "p" "󱓧   Projects" "Telescope projects")
-            (button "[" "󱓵   Restore Project" projectRestore)
-            {
-              type = "padding";
-              val = 1;
-            }
+            # (button "k" "󰮋   New Note" obsidianNew)
+            # (button "o" "󰮊   Restore Vault" obsidianRestore)
+            # (button "l" "󰇈   Search Vault" obsidianSearch)
+            # (button "h" "󱘟   Grep Vault" obsidianGrep)
+            # {
+            #   type = "padding";
+            #   val = 1;
+            # }
+            # #(button "x" "   NixOS" #TODO)
+            # (button "p" "󱓧   Projects" "Telescope projects")
+            # (button "[" "󱓵   Restore Project" projectRestore)
+            # {
+            #   type = "padding";
+            #   val = 1;
+            # }
             (button "m" "   Keymaps" "Telescope keymaps")
             (button "i" "   LSP Info" "LspInfo")
             (button "q" "󰅙   Quit" "qa")

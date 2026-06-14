@@ -12,7 +12,7 @@ _: {
         key = "<leader>;";
         action = "$a;<esc>0w";
       }
-      # caps Esc
+      # caps ctrl - remapped on system level
       {
         mode = [
           "n"
@@ -22,7 +22,6 @@ _: {
         ];
         key = "<caps>";
         action = "<esc>";
-
       }
       # Linebreak
       {
