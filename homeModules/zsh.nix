@@ -31,9 +31,13 @@ in
         cs = "clear;ls";
         ct = "clear;tree";
 
+        l = "ls";
         lsa = "ls -a";
+        la = "ls -a";
         lsl = "ls -l";
+        ll = "ls -l";
         lsla = "ls -la";
+        lla = "ls -la";
 
         ".." = "cd ..";
         "..." = "cd ..; cd ..;";
@@ -64,7 +68,7 @@ in
 
       initContent = ''
         gadd() {
-          git add "$*"
+          git add "$."
           git status 
         }
         gcommit() {git commit -m "$*"}
@@ -83,6 +87,15 @@ in
           sudo nixos-rebuild switch --flake
           cd $wd
         }
+
+        cdls() {cd "$*" && ls}
+        cdl() {cd "$*" && ls}
+        cdlsa() {cd "$*" && ls -a}
+        cdla() {cd "$*" && ls -a}
+        cdlsl() {cd "$*" && ls -l}
+        cdll() {cd "$*" && ls -l}
+        cdlsla() {cd "$*" && ls -la}
+        cdlla() {cd "$*" && ls -la}
       '';
     }
     (mkIf (username == "kobi") {
