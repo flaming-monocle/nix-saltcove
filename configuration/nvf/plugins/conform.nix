@@ -17,23 +17,23 @@
           python = [ "black" ];
           javascript = [
             "prettierd"
-            "prettier"
+            # "prettier"
           ];
           yaml = [
             "perttierd"
-            "prettier"
+            # "prettier"
           ];
           json = [
             "perttierd"
-            "prettier"
+            # "prettier"
           ];
           jsonc = [
             "perttierd"
-            "prettier"
+            # "prettier"
           ];
           markdown = [
             "perttierd"
-            "prettier"
+            # "prettier"
           ];
           text = [ "trim_whitespace" ];
           dart_format = {

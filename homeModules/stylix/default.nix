@@ -23,13 +23,12 @@ in
     #-- Unconditional --#
     {
       enable = true;
-      # targets = {
-      #   starship.enable = false;
-      #   neovim.enable = false;
-      #   nvf.enable = false;
-      #   vim.enable = false;
-      #   nvim.enable = false;
-      # };
+      targets = {
+        #   starship.enable = false;
+        neovim.enable = true;
+        nvf.enable = true;
+        vim.enable = true;
+      };
       fonts = {
         serif = {
           package = pkgs.dejavu_fonts;

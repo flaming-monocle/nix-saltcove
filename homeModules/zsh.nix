@@ -112,12 +112,15 @@ in
       };
       initContent = ''
         zet() {
-          dateTime="$(date +'%y%m%d %H%M')"
+          dateTime="$(date +'%y%m%d-')"
           title="$*"
           cd ~/Documents/secondbrain/'002 Zettelkasten'
-          cp "zet-template.md" "$dateTime $title.md"
-          vim +10 "$dateTime-$title.md"
+          cp "zet-template.md" "$dateTime$title.md"
+          vim -c 'normal! Go' "$dateTime-$title.md"
         }
+        zetr() {nvim $(ls | shuf -n 1)}
+        zeto() {nvim $(ls -1tr | head -1)}
+        zetl() { nvim $(grep -Lr "\[\[" * | head --lines 1)}
       '';
     })
     (mkIf (username == "carlisle") {
