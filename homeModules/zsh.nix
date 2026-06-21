@@ -68,7 +68,7 @@ in
 
       initContent = ''
         gadd() {
-          git add "$."
+          git add .
           git status 
         }
         gcommit() {git commit -m "$*"}
@@ -118,9 +118,18 @@ in
           cp "zet-template.md" "$dateTime$title.md"
           vim -c 'normal! Go' "$dateTime-$title.md"
         }
-        zetr() {nvim $(ls | shuf -n 1)}
-        zeto() {nvim $(ls -1tr | head -1)}
-        zetl() { nvim $(grep -Lr "\[\[" * | head --lines 1)}
+        zetr() {
+          cd ~/Documents/secondbrain/'002 Zettelkasten'
+          nvim $(ls | shuf -n 1)
+        }
+        zeto() {
+          cd ~/Documents/secondbrain/'002 Zettelkasten'
+          nvim $(ls -1tr | head -1)
+        }
+        zetl() {
+          cd ~/Documents/secondbrain/'002 Zettelkasten'
+          nvim $(grep -Lr "\[\[" * | head --lines 1)
+        }
       '';
     })
     (mkIf (username == "carlisle") {
