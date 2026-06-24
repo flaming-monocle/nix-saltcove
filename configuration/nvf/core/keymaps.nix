@@ -201,6 +201,7 @@
       }
 
       # Diagnostics
+      # TODO testing the default conditions
       {
         key = "<leader>d";
         mode = "n";
@@ -208,34 +209,34 @@
         action = "<cmd>lua vim.diagnostic.open_float()<CR>";
         desc = "Open diagnostics";
       }
-      {
-        key = "]d";
-        mode = "n";
-        silent = true;
-        action = "<cmd>lua vim.diagnostic.goto_next()<CR>";
-        desc = "Next diagnostic";
-      }
-      {
-        key = "[d";
-        mode = "n";
-        silent = true;
-        action = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
-        desc = "Previous diagnostic";
-      }
-      {
-        key = "]D";
-        mode = "n";
-        silent = true;
-        action = "<cmd>lua vim.diagnostic.goto_last()<CR>";
-        desc = "Last diagnostic";
-      }
-      {
-        key = "[D";
-        mode = "n";
-        silent = true;
-        action = "<cmd>lua vim.diagnostic.goto_first()<CR>";
-        desc = "First diagnostic";
-      }
+      # {
+      #   key = "]d";
+      #   mode = "n";
+      #   silent = true;
+      #   action = "<cmd>Lspsaga disagnostic.jump<CR>";
+      #   desc = "Next diagnostic";
+      # }
+      # {
+      #   key = "[d";
+      #   mode = "n";
+      #   silent = true;
+      #   action = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
+      #   desc = "Previous diagnostic";
+      # }
+      # {
+      #   key = "]D";
+      #   mode = "n";
+      #   silent = true;
+      #   action = "<cmd>lua vim.diagnostic.goto_last()<CR>";
+      #   desc = "Last diagnostic";
+      # }
+      # {
+      #   key = "[D";
+      #   mode = "n";
+      #   silent = true;
+      #   action = "<cmd>lua vim.diagnostic.goto_first()<CR>";
+      #   desc = "First diagnostic";
+      # }
       {
         key = "<leader>jl";
         mode = "n";

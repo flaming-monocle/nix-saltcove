@@ -14,10 +14,10 @@
     settings = lib.mkMerge [
       {
         # Font and cursor
-        font_size = 14.0;
+        font_size = 15.0;
         adjust_line_height = "100%";
         cursor_shape = "block";
-        cursor_blink_interval = 0;
+        cursor_blink_interval = 0.5;
         cursor_trail = 1;
         cursor_trail_decay = "0.05 0.20";
         cursor_trail_start_threshold = 1;
@@ -51,6 +51,7 @@
         "map alt+j" = "neighboring_window down";
         "map alt+k" = "neighboring_window up";
         "map alt+l" = "neighboring_window right";
+        "map shift+alt+l" = "next_layout";
       })
 
       # Carlisle-specific settings

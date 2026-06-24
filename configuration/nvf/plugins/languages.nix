@@ -25,18 +25,18 @@
           enable = true;
           types = [
             "statix"
-            "deadnix"
+            # "deadnix"
           ];
         };
       };
 
       markdown = {
         enable = true;
-        format.enable = true;
+        # format.enable = true;
         lsp.enable = true;
         extensions = {
           markview-nvim.enable = true;
-          render-markdown-nvim.enable = true;
+          # render-markdown-nvim.enable = true;
         };
       };
 

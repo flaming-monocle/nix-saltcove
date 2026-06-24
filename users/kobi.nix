@@ -46,7 +46,8 @@
           ./../homeModules/kitty.nix
           ./../homeModules/math.nix
           # ./../homeModules/libreoffice.nix
-          # ./../homeModules/nixvim # Current iteration has recursion problems. Prefer nvf via configuration.nix
+          # Current iteration has recursion problems. Prefer nvf via configuration.nix
+          # ./../homeModules/nixvim
           # ./../homeModules/obs.nix
           ./../homeModules/obsidian.nix
           # ./../homeModules/reaper.nix

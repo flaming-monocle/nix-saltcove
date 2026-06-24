@@ -110,25 +110,31 @@ in
         pavu = "pavucontrol";
         r = "ranger";
       };
+      # Summaries:
+      # zet() creates a new zettel with args as title
+      # zetr() opens a random zettel
+      # zeto() opens note edited longest ago
+      # zetl() opens a note with no links
       initContent = ''
         zet() {
-          dateTime="$(date +'%y%m%d-')"
+          dateTime="$(date +'%y%m%d')"
           title="$*"
           cd ~/Documents/secondbrain/'002 Zettelkasten'
-          cp "zet-template.md" "$dateTime$title.md"
-          vim -c 'normal! Go' "$dateTime-$title.md"
+          cp "zet-template.md" "$dateTime-$title.md"
+          vim -c 'normal! f:a<CR>' "$dateTime-$title.md"
         }
+        zetd() {cd ~/Documents/secondbrain/'002 Zettelkasten'}
         zetr() {
           cd ~/Documents/secondbrain/'002 Zettelkasten'
-          nvim $(ls | shuf -n 1)
+          nvim "$(ls | shuf -n 1)"
         }
         zeto() {
           cd ~/Documents/secondbrain/'002 Zettelkasten'
-          nvim $(ls -1tr | head -1)
+          nvim "$(ls -1tr | head -1)"
         }
         zetl() {
           cd ~/Documents/secondbrain/'002 Zettelkasten'
-          nvim $(grep -Lr "\[\[" * | head --lines 1)
+          nvim "$(grep -Lr "\[\[" * | head --lines 1)"
         }
       '';
     })
