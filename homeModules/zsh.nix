@@ -116,24 +116,23 @@ in
       # pko() opens note edited longest ago
       # pkl() opens a note with no links
       initContent = ''
+        vaultDir="~/para"
         pk() {
-          echo Making new note in ~/para/inbox
-          echo Remember to sort inbox!
           noteTitle="$(date +'%y%m%d')-$*.md"
-          cd ~/para
-          cp pk/template.md 0inbox/$noteTitle.md
-          vim -c 'normal! 2o' -c 'normal! a' "inbox/$noteTitle.md"
+          echo Making new note in ~/para/0inbox/$noteTitle
+          echo Remember to sort inbox!
+          cd $vaultDir
+          cp $vaultDir/pk/template.md $vaultDir/0inbox/$noteTitle
+          vim -c 'normal! o' -c 'normal! o' "$vaultDir/pk/0inbox/$noteTitle"
         }
         pkr() {
-          cd ~/para && nvim "$(ls | shuf -n 1)"
+          cd $vaultDir && nvim "$(ls | shuf -n 1)"
         }
         pko() {
-          cd ~/para
-          nvim "$(ls -1tr | head -1)"
+          cd $vaultDir && nvim "$(ls -1tr | head -1)"
         }
         pkl() {
-          cd ~/para
-          nvim "$(grep -Lr "\[\[" * | head --lines 1)"
+          cd $vaultDir && nvim "$(grep -Lr "\[\[" * | head --lines 1)"
         }
 
         zet() {
