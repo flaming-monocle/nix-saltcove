@@ -19,6 +19,7 @@
       git
       direnv
       spotify
+      # inputs.zen-browser.packages.${pkgs.stenv.hostPlatform.system}.default
     ];
 
     pathsToLink = [

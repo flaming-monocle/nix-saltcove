@@ -111,11 +111,31 @@ in
         r = "ranger";
       };
       # Summaries:
-      # zet() creates a new zettel with args as title
-      # zetr() opens a random zettel
-      # zeto() opens note edited longest ago
-      # zetl() opens a note with no links
+      # pk() creates a new zettel with args as title
+      # pkr() opens a random zettel
+      # pko() opens note edited longest ago
+      # pkl() opens a note with no links
       initContent = ''
+        pk() {
+          echo Making new note in ~/para/inbox
+          echo Remember to sort inbox!
+          noteTitle="$(date +'%y%m%d')-$*.md"
+          cd ~/para
+          cp pk/template.md 0inbox/$noteTitle.md
+          vim -c 'normal! 2o' -c 'normal! a' "inbox/$noteTitle.md"
+        }
+        pkr() {
+          cd ~/para && nvim "$(ls | shuf -n 1)"
+        }
+        pko() {
+          cd ~/para
+          nvim "$(ls -1tr | head -1)"
+        }
+        pkl() {
+          cd ~/para
+          nvim "$(grep -Lr "\[\[" * | head --lines 1)"
+        }
+
         zet() {
           dateTime="$(date +'%y%m%d')"
           title="$*"
@@ -123,7 +143,6 @@ in
           cp "zet-template.md" "$dateTime-$title.md"
           vim -c 'normal! f:a<CR>' "$dateTime-$title.md"
         }
-        zetd() {cd ~/Documents/secondbrain/'002 Zettelkasten'}
         zetr() {
           cd ~/Documents/secondbrain/'002 Zettelkasten'
           nvim "$(ls | shuf -n 1)"

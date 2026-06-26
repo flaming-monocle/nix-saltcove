@@ -61,6 +61,7 @@
           # ./../homeModules/transmission.nix
           ./../homeModules/thunar.nix
           ./../homeModules/waybar.nix
+          ./../homeModules/zen-browser.nix
           ./../homeModules/zsh.nix
         ];
       };
