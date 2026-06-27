@@ -84,6 +84,10 @@ in
           };
 
           bind = [
+            # TODO define scrolling-layout specific binds that
+            # open and immediately resize a given window
+            # Probably best handled by a bind that calls a script
+
             # Applications
             "$mod, Return, exec, $terminal"
             #"$mod, CAPS, exec, $terminal" # TODO work on this

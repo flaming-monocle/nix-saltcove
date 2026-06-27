@@ -140,7 +140,7 @@
         desc = "Find files with Grep";
       }
       {
-        key = "<leader>jt";
+        key = "<leader>fd";
         mode = "n";
         silent = true;
         action = "<cmd>Telescope diagnostics<CR>";

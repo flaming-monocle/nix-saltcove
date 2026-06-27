@@ -28,8 +28,8 @@ in
           "$mod, K, workspace, -${wsSwapVal}"
           # TODO Make per-monitor
           # TODO column-resize keybinds:
-          "$mod, [, layoutmsg, colresize -conf"
-          "$mod, ], layoutmsg, colresize +conf"
+          "$mod, T, layoutmsg, colresize -conf"
+          "$mod, Y, layoutmsg, colresize +conf"
         ];
       };
       wayland.windowManager.hyprland = {
@@ -61,7 +61,7 @@ in
           # mouse-over scrolling, but not focusing
           general.no_focus_fallback = true;
           scrolling = {
-            column_width = 0.33;
+            column_width = 0.5;
             explicit_column_widths = "0.125, 0.25, 0.33, 0.5, 0.66, 0.75, 0.875, 1";
             fullscreen_on_one_column = false;
             # Focused window stays centered in viewport
@@ -95,10 +95,10 @@ in
           # Laptop gesture controls in scrolling layout
           # TODO up and down both register as up
           gesture = [
-            "3, left, dispatcher, layoutmsg, focus l"
+            "3, left, layoutmsg, focus l"
             "3, down, workspace, m+1"
             "3, up, workspace, m-1"
-            "3, right, dispatcher, layoutmsg, focus r"
+            "3, right, layoutmsg, focus r"
             # "3, vertical, workspace"
           ];
           # workspace_swipe_invert = false;

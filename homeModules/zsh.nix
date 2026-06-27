@@ -67,11 +67,11 @@ in
       };
 
       initContent = ''
-        gadd() {
+        ga() {
           git add .
           git status 
         }
-        gcommit() {git commit -m "$*"}
+        gc() {git commit -m "$*"}
 
         g() {grep "$*"}
         gr() {grep -r "$*"}
