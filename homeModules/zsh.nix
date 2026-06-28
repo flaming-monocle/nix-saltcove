@@ -123,7 +123,7 @@ in
           echo Remember to sort inbox!
           cd $vaultDir
           cp $vaultDir/pk/template.md $vaultDir/0inbox/$noteTitle
-          vim -c 'normal! o' -c 'normal! o' "$vaultDir/pk/0inbox/$noteTitle"
+          vim -c 'normal! o' -c 'normal! o' "$vaultDir/0inbox/$noteTitle"
         }
         pkr() {
           cd $vaultDir && nvim "$(ls | shuf -n 1)"

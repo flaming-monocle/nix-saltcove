@@ -40,7 +40,7 @@
           ./../homeModules/gaming.nix
           ./../homeModules/gimp.nix
           ./../homeModules/git.nix
-          ./../homeModules/waylandDesktop/hyprland.nix
+          ./../homeModules/waylandDesktop/hyprland-unstable.nix
           ./../homeModules/hyprpaper.nix
           ./../homeModules/hyprpolkit.nix
           ./../homeModules/kitty.nix

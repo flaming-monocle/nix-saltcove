@@ -44,7 +44,7 @@ in
 
   imports = [
     ./hyprland-layout/scrolling.nix
-    # ./hyprland-layout/dwindle.nix
+    ./hyprland-layout/dwindle.nix
   ];
 
   config = {
