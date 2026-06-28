@@ -78,5 +78,7 @@ in
     })
   ];
   # If this isn't set, rebuilding throws a warning about choosing a version
-  gtk.gtk4.theme = null;
+  # 260627 It causes warnings from a conflict with gtk in nixpkgs, too.
+  # TODO test status: disabling...
+  # gtk.gtk4.theme = null;
 }

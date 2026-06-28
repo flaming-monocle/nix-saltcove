@@ -48,7 +48,7 @@
           # ./../homeModules/libreoffice.nix
           # Current iteration has recursion problems. Prefer nvf via configuration.nix
           # ./../homeModules/nixvim
-          # ./../homeModules/obs.nix
+          ./../homeModules/obs.nix
           ./../homeModules/obsidian.nix
           # ./../homeModules/reaper.nix
           ./../homeModules/rofi.nix
