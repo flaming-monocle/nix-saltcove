@@ -40,6 +40,15 @@
         };
       };
 
+      lua = {
+        enable = true;
+        format.enable = true;
+        lsp = {
+          enable = true;
+          servers = [ "lua-language-server" ];
+        };
+      };
+
       python = {
         enable = true;
         format.enable = true;

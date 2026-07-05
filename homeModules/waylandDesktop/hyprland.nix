@@ -44,7 +44,7 @@ in
 
   imports = [
     ./hyprland-layout/scrolling.nix
-    ./hyprland-layout/dwindle.nix
+    # ./hyprland-layout/dwindle.nix
   ];
 
   config = {
@@ -181,7 +181,7 @@ in
           };
 
           misc = {
-            "vfr" = "true";
+            vfr = "true";
             # "disable_hyprland_logo" = "true";
             "disable_splash_rendering" = "true";
           };

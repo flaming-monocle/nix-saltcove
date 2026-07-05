@@ -12,7 +12,6 @@ let
     # mkForce
     mkIf
     mkMerge
-    mod
     ;
   # inherit (config.custom.stylix)
   #   colors
@@ -182,7 +181,7 @@ in
           };
 
           misc = {
-            "vfr" = "true";
+            vfr = "true";
             # "disable_hyprland_logo" = "true";
             "disable_splash_rendering" = "true";
           };

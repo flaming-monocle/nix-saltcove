@@ -1,15 +1,8 @@
 {
   pkgs,
-  # osConfig,
-  # lib,
   ...
 }:
-# let
-#   inherit (lib) mkOption types;
-#   host = osConfig.networking.hostname;
-# in
 {
-  #-- User Settings --#
   users.users = {
     kobi = {
       isNormalUser = true;
@@ -18,14 +11,23 @@
         "networkmanager"
         "wheel"
       ];
-      initialPassword = "9231";
+      initialPassword = "1111";
       shell = pkgs.zsh;
     };
   };
 
-  programs.zsh.enable = true;
+  environment.systemPackages = with pkgs; [
+    # Deprecated:
+    # hyprland
+    # hyprpolkitagent
+  ];
 
-  #-- Home Manager --#
+  programs = {
+    hyprland.enable = true;
+    zsh.enable = true;
+  };
+  services.gvfs.enable = true;
+
   home-manager = {
     users.kobi =
       { stylix, ... }:
@@ -45,8 +47,9 @@
           ./../homeModules/hyprpolkit.nix
           ./../homeModules/kitty.nix
           ./../homeModules/math.nix
+          ./../homeModules/minitube.nix
           # ./../homeModules/libreoffice.nix
-          # Current iteration has recursion problems. Prefer nvf via configuration.nix
+          # Deprecated, refer to /configuration/nvf/
           # ./../homeModules/nixvim
           ./../homeModules/obs.nix
           ./../homeModules/obsidian.nix
