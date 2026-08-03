@@ -84,6 +84,7 @@ in
           "$mod, G, exec, gimp"
           ''$mod, C, exec, [float; size 400 400] $terminal -e "kalker"''
           "$mod SHIFT, C, exec, [float;size 800 400] qalculate-gtk"
+          "$mod E, exec, thunderbird"
         ]
         ++ [
           # System Controls

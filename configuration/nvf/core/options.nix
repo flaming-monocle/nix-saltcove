@@ -1,7 +1,7 @@
-{ lib, osConfig, ... }:
+{ lib, ... }:
 let
   # inherit (osConfig.networking) hostName;
-  inherit (lib) mkMerge mkIf concatStrings;
+  inherit (lib) mkMerge concatStrings;
 in
 {
   programs.nvf.settings.vim = {
@@ -34,7 +34,7 @@ in
         # Disable text wrapping by default
         # - in favor of smartcolumn with p.n.s.v.ui.smartcolumn
         # - with wrap-enable by filetype with p.n.s.v.autocmds
-        wrap = false;
+        wrap = true;
 
         # Cursor line highlighting
         # Type: one of "line", "screenline", "number", "both"
@@ -69,13 +69,8 @@ in
           "gitcommit"
         ];
         command = concatStrings [
-          "setlocal wrap"
-          " "
-          "textwidth=72"
-          " "
-          "formatoptions+=t"
-          " "
-          "spell spelllang=en_us"
+          "setlocal wrap textwidth=60"
+          # "formatoptions+=t spell spelllang=en_us"
         ];
       }
     ];

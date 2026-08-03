@@ -115,22 +115,22 @@ in
       # pko() opens note edited longest ago
       # pkl() opens a note with no links
 
-      # initContent = ''
-      #   vaultDir="~/para"
-      #   pk() {
-      #     noteTitle="$(date +'%y%m%d')-$*.md"
-      #     echo Making new note in ~/para/0inbox/$noteTitle
-      #     echo Remember to sort inbox!
-      #     cd $vaultDir
-      #     cp $vaultDir/pk/template.md $vaultDir/0inbox/$noteTitle
-      #     vim -c 'normal! o' -c 'normal! o' "$vaultDir/0inbox/$noteTitle"
-      #   }
-      #   pkr() { cd $vaultDir && nvim "$(ls | shuf -n 1)" }
-      #   pko() { cd $vaultDir && nvim "$(ls -1tr | head -1)" }
-      #   pkl() { cd $vaultDir && nvim "$(grep -Lr "\[\[" * | head --lines 1)" }
-      #   pkls() { cd $vaultDir && tree -L 2 -P '*.md'"; }
-      #   pkd() { cd $vaultDir && tree -L 2 -P '*.md'"; }
-      # '';
+      initContent = ''
+        vaultDir="~/para"
+        pk() {
+          noteTitle="$(date +'%y%m%d')-$*.md"
+          echo Making new note in ~/para/0inbox/$noteTitle
+          echo Remember to sort inbox!
+          cd $vaultDir
+          cp $vaultDir/pk/template.md $vaultDir/0inbox/$noteTitle
+          vim -c 'normal! o' -c 'normal! o' "$vaultDir/0inbox/$noteTitle"
+        }
+        pkr() { cd $vaultDir && nvim "$(ls | shuf -n 1)" }
+        pko() { cd $vaultDir && nvim "$(ls -1tr | head -1)" }
+        pkl() { cd $vaultDir && nvim "$(grep -Lr "\[\[" * | head --lines 1)" }
+        pkls() { cd $vaultDir && tree -L 2 -P '*.md'"; }
+        pkd() { cd $vaultDir && tree -L 2 -P '*.md'"; }
+      '';
     })
     (mkIf (username == "carlisle") {
       shellAliases = {
