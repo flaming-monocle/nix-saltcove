@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    # ./alpha.nix
+    ./alpha.nix
     ./conform.nix
     ./debugger.nix
     ./filetree.nix

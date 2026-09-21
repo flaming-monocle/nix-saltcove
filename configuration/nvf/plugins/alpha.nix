@@ -1,62 +1,69 @@
 {
   pkgs,
+  # config,
   lib,
   ...
 }:
 let
-  #stylixColors = config.lib.stylix.colors;
+  # Stylix = config.lib.stylix;
+  # inherit (config.lib.stylix) colors;
 
-  vaultDir = "/home/kobi/Documents/secondBrain/";
+  ##-- Obsidian-specific functions --##
+  ##-- Should be rewritten to follow parakasten's lead
 
-  obsidianNew.__raw = ''
-    function()
-      local path = vim.fn.expand("${vaultDir}")
-      vim.cmd("cd " .. path)
-      vim.schedule(function()
-        vim.cmd("Obsidian new")
-      end)
-    end
-  '';
+  # vaultDir = "/home/kobi/Documents/secondbrain/";
 
-  obsidianSearch.__raw = ''
-    function ()
-      require('telescope.builtin').find_files({
-        cwd = "${vaultDir}",
-        prompt_title = "󱓧  Vault Files",
-      })
-    end
-  '';
+  # obsidianNew.__raw = ''
+  #   function()
+  #     local path = vim.fn.expand("${vaultDir}")
+  #     vim.cmd("cd " .. path)
+  #     vim.schedule(function()
+  #       vim.cmd("Obsidian new")
+  #     end)
+  #   end
+  # '';
 
-  obsidianRestore.__raw = ''
-    function()
-      vim.cmd("cd ${vaultDir}")
-      require("persistence").load()
-      require("neo-tree")
-      vim.cmd("Neotree show")
-     end
-  '';
+  # obsidianSearch.__raw = ''
+  #   function ()
+  #     require('telescope.builtin').find_files({
+  #       cwd = "${vaultDir}",
+  #       prompt_title = "󱓧  Vault Files",
+  #     })
+  #   end
+  # '';
 
-  obsidianGrep.__raw = ''
-    function()
-      require('telescope.builtin').live_grep({
-        cwd = "${vaultDir}",
-        prompt_title = "󱎸  Search in Notes",
-      })
-    end
-  '';
+  # obsidianRestore.__raw = ''
+  #   function()
+  #     vim.cmd("cd ${vaultDir}")
+  #     require("persistence").load()
+  #     require("neo-tree")
+  #     vim.cmd("Neotree show")
+  #    end
+  # '';
 
-  projectRestore.__raw = ''
-    function()
-       vim.cmd("Telescope projects")
-       require("persistence").load()
-    end
-  '';
+  # obsidianGrep.__raw = ''
+  #   function()
+  #     require('telescope.builtin').live_grep({
+  #       cwd = "${vaultDir}",
+  #       prompt_title = "󱎸  Search in Notes",
+  #     })
+  #   end
+  # '';
 
-  lastRestore.__raw = ''
-    function()
-      require("persistence").load()
-    end
-  '';
+  ##-- Project-specific functions --##
+  ##-- Requires the Projects extension, which I should look into
+  # projectRestore.__raw = ''
+  #   function()
+  #      vim.cmd("Telescope projects")
+  #      require("persistence").load()
+  #   end
+  # '';
+
+  # lastRestore.__raw = ''
+  #   function()
+  #     require("persistence").load()
+  #   end
+  # '';
 
   button = shortcut: desc: action: {
     type = "button";
@@ -79,6 +86,7 @@ let
       ];
     };
   };
+
 in
 {
   programs.nvf.settings.vim = {
@@ -113,7 +121,7 @@ in
         }
         # {
         #   type = "text";
-        #   val = "Base16 - Everforest Dark Hard";
+        #   val = "base16 - ${stylixScheme}";
         #   opts = {
         #     hl = "Comment";
         #     position = "center";
@@ -126,82 +134,82 @@ in
         #     position = "center";
         #     hl = [
         #       [
-        #         "#${stylixColors.base00}"
+        #         "#${colors.base00}"
         #         1
         #         7
         #       ]
         #       [
-        #         "#${stylixColors.base01}"
+        #         "#${colors.base01}"
         #         9
         #         15
         #       ]
         #       [
-        #         "#${stylixColors.base02}"
+        #         "#${colors.base02}"
         #         17
         #         23
         #       ]
         #       [
-        #         "#${stylixColors.base03}"
+        #         "#${colors.base03}"
         #         25
         #         31
         #       ]
         #       [
-        #         "#${stylixColors.base04}"
+        #         "#${colors.base04}"
         #         33
         #         39
         #       ]
         #       [
-        #         "#${stylixColors.base05}"
+        #         "#${colors.base05}"
         #         41
         #         47
         #       ]
         #       [
-        #         "#${stylixColors.base06}"
+        #         "#${colors.base06}"
         #         49
         #         55
         #       ]
         #       [
-        #         "#${stylixColors.base07}"
+        #         "#${colors.base07}"
         #         57
         #         63
         #       ]
         #       [
-        #         "#${stylixColors.base08}"
+        #         "#${colors.base08}"
         #         65
         #         71
         #       ]
         #       [
-        #         "#${stylixColors.base09}"
+        #         "#${colors.base09}"
         #         73
         #         79
         #       ]
         #       [
-        #         "#${stylixColors.base0A}"
+        #         "#${colors.base0A}"
         #         81
         #         87
         #       ]
         #       [
-        #         "#${stylixColors.base0B}"
+        #         "#${colors.base0B}"
         #         89
         #         95
         #       ]
         #       [
-        #         "#${stylixColors.base0C}"
+        #         "#${colors.base0C}"
         #         97
         #         103
         #       ]
         #       [
-        #         "#${stylixColors.base0D}"
+        #         "#${colors.base0D}"
         #         105
         #         111
         #       ]
         #       [
-        #         "#${stylixColors.base0E}"
+        #         "#${colors.base0E}"
         #         113
         #         119
         #       ]
         #       [
-        #         "#${stylixColors.base0F}"
+        #         "#${colors.base0F}"
         #         121
         #         127
         #       ]
@@ -215,31 +223,31 @@ in
         {
           type = "group";
           val = [
-            (button "R" "󰑓   Restore Last" lastRestore)
+            # (button "R" "󰑓   Restore Last" lastRestore)
             (button "n" "   New File" "ene | startinsert")
-            (button "r" "   Recent Files" "Telescope oldfiles")
-            (button "f" "   Find File" "Telescope find_files")
-            (button "g" "   Live Grep" "Telescope live_grep")
-            (button "t" "󰙅   Tree View" "Neotree filesystem reveal left")
+            (button "r" "   Recent Files ( fr)" "Telescope oldfiles")
+            (button "f" "   Find File ( ff)" "Telescope find_files")
+            (button "g" "   Live Grep ( fg)" "Telescope live_grep")
+            (button "t" "󰙅   Tree View ( e)" "Neotree filesystem reveal left")
             {
               type = "padding";
               val = 1;
             }
-            (button "k" "󰮋   New Note" obsidianNew)
-            (button "o" "󰮊   Restore Vault" obsidianRestore)
-            (button "l" "󰇈   Search Vault" obsidianSearch)
-            (button "h" "󱘟   Grep Vault" obsidianGrep)
-            {
-              type = "padding";
-              val = 1;
-            }
-            #(button "x" "   NixOS" #TODO)
-            (button "p" "󱓧   Projects" "Telescope projects")
-            (button "[" "󱓵   Restore Project" projectRestore)
-            {
-              type = "padding";
-              val = 1;
-            }
+            # (button "k" "󰮋   New Note" obsidianNew)
+            # (button "o" "󰮊   Restore Vault" obsidianRestore)
+            # (button "l" "󰇈   Search Vault" obsidianSearch)
+            # (button "h" "󱘟   Grep Vault" obsidianGrep)
+            # {
+            #   type = "padding";
+            #   val = 1;
+            # }
+            # (button "x" "   NixOS" #TODO)
+            # (button "p" "󱓧   Projects" "Telescope projects")
+            # (button "[" "󱓵   Restore Project" projectRestore)
+            # {
+            #   type = "padding";
+            #   val = 1;
+            # }
             (button "m" "   Keymaps" "Telescope keymaps")
             (button "i" "   LSP Info" "LspInfo")
             (button "q" "󰅙   Quit" "qa")
@@ -257,7 +265,7 @@ in
             hl = "Comment";
             __raw = ''
               function()
-                return os.date("%Y %m %d - %A %H:%M")
+                return os.date(" %A, %Y-%m-%d %H:%M")
               end
             '';
           };

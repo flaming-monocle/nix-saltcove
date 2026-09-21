@@ -1,10 +1,20 @@
-{ osConfig, lib, ... }:
+{
+  osConfig,
+  lib,
+  config,
+  ...
+}:
 let
   inherit (lib) mkMerge mkIf;
   inherit (osConfig.networking) hostName;
+  inherit (config.lib.stylix) colors;
+
   mainMonitor = mkMerge [
     (mkIf (hostName == "snowblack") "DP-3")
     (mkIf (hostName == "bifrost") "eDP-1")
+  ];
+  secondMonitor = mkMerge [
+    (mkIf (hostName == "snowblack") "DP-1")
   ];
 in
 {
@@ -113,12 +123,14 @@ in
         };
 
         "clock" = {
-          format = "󰃭 {:%R %a. %y-%m-%d}";
-          # eg, 13:44 Sat. 24-04-18
-          tooltip-format = "<tt><small>{calendar}</small></tt>";
+          # Pretty sure this is right, but TODO doublecheck
+          format = "󰃭 {%a. %y %m %d %R}";
+          # eg, Sat. 24-04-18 13:44
+          tooltip-format = "<tt>{calendar}</tt>";
         };
       };
     };
+    # TODO get this integrated with Stylix
     style = ''
       * {
         font-family: "JetBrainsMono Nerd Font";
