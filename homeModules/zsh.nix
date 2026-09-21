@@ -121,7 +121,6 @@ in
           noteTitle="$(date +'%y%m%d')-$*.md"
           echo Making new note in ~/para/0inbox/$noteTitle
           echo Remember to sort inbox!
-          cd $vaultDir
           cp $vaultDir/pk/template.md $vaultDir/0inbox/$noteTitle
           vim -c 'normal! o' -c 'normal! o' "$vaultDir/0inbox/$noteTitle"
         }

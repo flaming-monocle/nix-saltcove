@@ -69,7 +69,7 @@ in
         bind = [
           # TODO define scrolling-layout specific binds that
           # open and immediately resize a given window
-          # Probably best handled by a bind that calls a script
+          # This is gonna take Hyprland's Lua config
 
           # Applications
           "$mod, Return, exec, $terminal"
@@ -84,7 +84,7 @@ in
           "$mod, G, exec, gimp"
           ''$mod, C, exec, [float; size 400 400] $terminal -e "kalker"''
           "$mod SHIFT, C, exec, [float;size 800 400] qalculate-gtk"
-          "$mod E, exec, thunderbird"
+          #"$mod E, exec, Thunderbird"
         ]
         ++ [
           # System Controls
