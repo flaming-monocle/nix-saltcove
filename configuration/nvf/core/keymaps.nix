@@ -1,45 +1,111 @@
-{ ... }:
-{
+_: {
   programs.nvf.settings.vim = {
     globals.mapleader = " ";
     keymaps = [
+      {
+        # Easy write
+        mode = "n";
+        key = "<leader>w";
+        action = "<cmd>w<CR>";
+        desc = "Quick save";
+      }
 
-      # Smart split navigation
+      # Buffer navigation
+      {
+        mode = "n";
+        key = "<Tab>";
+        action = "<cmd>BufferLineCycleNext<CR>";
+        desc = "Next file in buffer";
+      }
+      {
+        mode = "n";
+        key = "<S-Tab>";
+        action = "<cmd>BufferLineCyclePrev<CR>";
+        desc = "Previous file in buffer";
+      }
+      {
+        mode = "n";
+        key = "<leader>x";
+        action = "<cmd>bdelete<CR>";
+        desc = "Close buffer";
+      }
+
+      # Oil # TODO
+      {
+        mode = "n";
+        key = "<leader>-";
+        action = "<cmd>Oil<cr>";
+        desc = "Open parent directory with Oil";
+      }
+
+      # Quick inserts
+      {
+        mode = "n";
+        key = "<leader>/";
+        action = "0wi// <esc>0w";
+        desc = "Quickly adds a // to the start of the working line";
+      }
+      {
+        mode = "n";
+        key = "<leader>3";
+        action = "0wi# <esc>0w";
+        desc = "Quickly adds a # to the start of the working line";
+      }
+      {
+        mode = "n";
+        key = "<leader>;";
+        action = "$a;<esc>0w";
+        desc = "Quickly adds a ; to the end of the working line";
+      }
+
+      # TODO remap on system level
       {
         mode = [
           "n"
-          "i"
+          "v"
+          "l"
+          "t"
         ];
+        key = "caps";
+        action = "<esc>";
+      }
+
+      # Linebreaks
+      {
+        mode = "n";
+        key = "<leader>bi";
+        action = "i<CR><esc>0be";
+      }
+      {
+        mode = "n";
+        key = "<leader>ba";
+        action = "a<CR><esc>0be";
+      }
+
+      # Smart split navigation
+      {
+        mode = "n";
         key = "<C-h>";
         action = "<C-w>h";
         silent = true;
         desc = "Smart left navigation/split";
       }
       {
-        mode = [
-          "n"
-          "i"
-        ];
+        mode = "n";
         key = "<C-j>";
         action = "<C-w>j";
         silent = true;
         desc = "Smart down navigation/split";
       }
       {
-        mode = [
-          "n"
-          "i"
-        ];
+        mode = "n";
         key = "<C-k>";
         action = "<C-w>k";
         silent = true;
         desc = "Smart up navigation/split";
       }
       {
-        mode = [
-          "n"
-          "i"
-        ];
+        mode = "n";
         key = "<C-l>";
         action = "<C-w>l";
         silent = true;
@@ -49,7 +115,6 @@
       # Splits
       {
         key = "<leader>sv";
-        mode = "n";
         silent = true;
         action = "<cmd>vsplit<CR>";
         desc = "Split Vertical";
@@ -64,6 +129,7 @@
 
       # Treesitter
       {
+        # This command does not exist
         key = "<leader>tc";
         mode = "n";
         silent = true;
@@ -84,33 +150,36 @@
       {
         key = "<Left>";
         mode = "n";
-        silent = false;
         action = "";
         desc = "Nuh uh uh!";
       }
       {
         key = "<Down>";
         mode = "n";
-        silent = false;
         action = "";
         desc = "Nuh uh uh!";
       }
       {
         key = "<Up>";
         mode = "n";
-        silent = false;
         action = "";
         desc = "Nuh uh uh!";
       }
       {
         key = "<Right>";
         mode = "n";
-        silent = false;
         action = "";
         desc = "Nuh uh uh!";
       }
 
       # Telescope
+      {
+        key = "<leader>fr";
+        mode = "n";
+        silent = true;
+        action = "<cmd>Telescipe oldfiles<CR>";
+        desc = "Find Recent Files";
+      }
       {
         key = "<leader>ff";
         mode = "n";
@@ -119,6 +188,7 @@
         desc = "Find Files by name";
       }
       {
+        # TODO figure this out
         key = "<leader>fp";
         mode = "n";
         silent = true;
@@ -126,6 +196,7 @@
         desc = "Find Projects";
       }
       {
+        # TODO unknown command
         key = "<leader>fb";
         mode = "n";
         silent = true;
@@ -209,34 +280,34 @@
         action = "<cmd>lua vim.diagnostic.open_float()<CR>";
         desc = "Open diagnostics";
       }
-      # {
-      #   key = "]d";
-      #   mode = "n";
-      #   silent = true;
-      #   action = "<cmd>Lspsaga disagnostic.jump<CR>";
-      #   desc = "Next diagnostic";
-      # }
-      # {
-      #   key = "[d";
-      #   mode = "n";
-      #   silent = true;
-      #   action = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
-      #   desc = "Previous diagnostic";
-      # }
-      # {
-      #   key = "]D";
-      #   mode = "n";
-      #   silent = true;
-      #   action = "<cmd>lua vim.diagnostic.goto_last()<CR>";
-      #   desc = "Last diagnostic";
-      # }
-      # {
-      #   key = "[D";
-      #   mode = "n";
-      #   silent = true;
-      #   action = "<cmd>lua vim.diagnostic.goto_first()<CR>";
-      #   desc = "First diagnostic";
-      # }
+      {
+        key = "<leader>]";
+        mode = "n";
+        silent = true;
+        action = "<cmd>lua vim.diagnostic.goto_next()<CR>";
+        desc = "Next diagnostic";
+      }
+      {
+        key = "<leader>[";
+        mode = "n";
+        silent = true;
+        action = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
+        desc = "Previous diagnostic";
+      }
+      {
+        key = "<leader>{";
+        mode = "n";
+        silent = true;
+        action = "<cmd>lua vim.diagnostic.goto_first()<CR>";
+        desc = "First diagnostic";
+      }
+      {
+        key = "<leader>}";
+        mode = "n";
+        silent = true;
+        action = "<cmd>lua vim.diagnostic.goto_last()<CR>";
+        desc = "Last diagnostic";
+      }
       {
         key = "<leader>jl";
         mode = "n";
@@ -246,6 +317,7 @@
       }
 
       # Session Manager
+      # TODO: figure this out
       #{
       #  key = "<leader>sm";
       #  mode = "n";
@@ -255,6 +327,7 @@
       #}
 
       # Floatterm
+      # TODO either keep or delete it, gents
       #{
       #  key = "<leader>tt";
       #  mode = [ "n" "t" ];
