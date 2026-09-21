@@ -26,7 +26,7 @@
       shada = "!,'100,<50,s10,h";
       #shadafile = "NONE";
 
-      wrap = false;
+      wrap = true;
     };
   };
 }
