@@ -32,12 +32,24 @@
 
       markdown = {
         enable = true;
-        # format.enable = true;
-        lsp.enable = true;
+        lsp.enable = false;
+        format = {
+          enable = false;
+          type = "prettier";
+        };
         extensions = {
           markview-nvim.enable = true;
           # render-markdown-nvim.enable = true;
         };
+      };
+
+      lua = {
+        enable = true;
+        lsp = {
+          enable = true;
+          servers = [ "lua-language-server" ];
+        };
+        format.enable = true;
       };
 
       python = {

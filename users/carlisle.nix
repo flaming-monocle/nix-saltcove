@@ -14,7 +14,21 @@
       shell = pkgs.zsh;
     };
   };
+
   programs.zsh.enable = true;
+  # KDE Plasma dependencies
+  services = {
+    desktopManager.plasma6.enable = true;
+    #   displayManager = {
+    #     sddm = {
+    #       enable = true;
+    #       wayland.enable = true;
+    #     };
+    #   };
+    # Past attempts at SDDM troubleshooting
+    # services.fprintd.enable = false;
+    # security.pam.services.login.fprintAuth = false;
+  };
 
   home-manager = {
     users.carlisle =

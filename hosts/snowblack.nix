@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   # Settings apply to all users in host
-  imports = [ 
+  imports = [
     # Host Settings
     ./snowblack-hardware.nix
     ./../configuration/default.nix
@@ -24,6 +24,7 @@
     scarlett2
     alsa-scarlett-gui
     openrgb-with-all-plugins
+    lunar-client
   ];
 
   home-manager.users.kobi = {
@@ -66,10 +67,10 @@
       jack.enable = true;
       extraConfig.pipewire."92-low-latency" = {
         "context-properties" = {
-      	  "default.clock.rate" = 48000;
-      	  "default.clock.quantum" = 1024;
-      	  "default.clock.min-quantum" = 512;
-    	    "default.clock.max-quantum" = 2048;
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 1024;
+          "default.clock.min-quantum" = 512;
+          "default.clock.max-quantum" = 2048;
         };
       };
     };
