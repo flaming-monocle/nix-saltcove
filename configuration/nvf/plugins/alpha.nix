@@ -102,6 +102,10 @@ in
       theme = null;
       layout = [
         {
+          type = "padding";
+          val = 4;
+        }
+        {
           type = "text";
           val = [
             "              db                          db                    "

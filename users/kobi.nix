@@ -45,36 +45,46 @@
       {
         imports = [
           ./../home.nix
-          stylix.homeModules.stylix
-          # ./../homeModules/audacity.nix
-          # ./../homeModules/vesktop.nix
+
+          ## Function
           #./../homeModules/font-manager.nix
-          #./../homeModules/freecad.nix
           ./../homeModules/gaming.nix
-          ./../homeModules/gimp.nix
           ./../homeModules/git.nix
           ./../homeModules/waylandDesktop/hyprland-unstable.nix
           ./../homeModules/hyprpaper.nix
           ./../homeModules/hyprpolkit.nix
           ./../homeModules/kitty.nix
           ./../homeModules/math.nix
-          # ./../homeModules/minitube.nix
           # ./../homeModules/libreoffice.nix
-          ./../homeModules/obs.nix
-          ./../homeModules/obsidian.nix
-          # ./../homeModules/reaper.nix
           ./../homeModules/rofi.nix
-          # ./../homeModules/shotcut.nix
-          # ./../homeModules/spicetify.nix
           ./../homeModules/starship.nix
+          stylix.homeModules.stylix
           ./../homeModules/stylix/default.nix
           ./../homeModules/swaync.nix
-          ./../homeModules/thunderbird.nix
-          # ./../homeModules/transmission.nix
           ./../homeModules/thunar.nix
           ./../homeModules/waybar.nix
-          ./../homeModules/zen-browser.nix
           ./../homeModules/zsh.nix
+
+          ## Creation
+          # ./../homeModules/audacity.nix
+          ./../homeModules/davinci.nix
+          #./../homeModules/freecad.nix
+          ./../homeModules/gimp.nix
+          ./../homeModules/obs.nix
+          ./../homeModules/obsidian.nix
+
+          ## Connection
+          # ./../homeModules/vesktop.nix
+          ./../homeModules/thunderbird.nix
+          # ./../homeModules/transmission.nix
+
+          ## Archived
+          # ./../homeModules/minitube.nix
+          # ./../homeModules/reaper.nix
+          # ./../homeModules/shotcut.nix
+          # ./../homeModules/spicetify.nix
+          # Needs work!
+          # ./../homeModules/zen-browser.nix
         ];
       };
   };
