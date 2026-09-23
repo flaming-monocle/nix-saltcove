@@ -108,13 +108,14 @@ in
         {
           type = "text";
           val = [
-            "              db                          db                    "
+            # https://asciigenerators.com/ Georgia11 font
+            "db                    "
             ""
-            "`7MMpMMMb.  `7MM  `7M'   `MF'`7M'   `MF'`7MM  `7MMpMMMb.pMMMb.  "
-            "  MM    MM    MM    `VA ,V'    VA   ,V    MM    MM    MM    MM  "
-            "  MM    MM    MM      XMX       VA ,V     MM    MM    MM    MM  "
-            "  MM    MM    MM    ,V' VA.      VVV      MM    MM    MM    MM  "
-            ".JMML  JMML..JMML..AM.   .MA.     W     .JMML..JMML  JMML  JMML."
+            ''`7MMpMMMb.  .gP"Ya   ,pW"Wq.`7M'   `MF'`7MM  `7MMpMMMb.pMMMb.  ''
+            "MM    MM ,M'   Yb 6W'   `Wb VA   ,V    MM    MM    MM    MM  "
+            ''MM    MM 8M"""""" 8M     M8  VA ,V     MM    MM    MM    MM  ''
+            "MM    MM YM.    , YA.   ,A9   VVV      MM    MM    MM    MM  "
+            ".JMML  JMML.`Mbmmd'  `Ybmd9'     W     .JMML..JMML  JMML  JMML."
           ];
           opts.hl = "Type";
           opts.position = "center";
