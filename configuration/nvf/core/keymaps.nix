@@ -31,12 +31,12 @@ _: {
       }
 
       # Oil # TODO
-      {
-        mode = "n";
-        key = "<leader>-";
-        action = "<cmd>Oil<cr>";
-        desc = "Open parent directory with Oil";
-      }
+      # {
+      #   mode = "n";
+      #   key = "<leader>-";
+      #   action = "<cmd>Oil<cr>";
+      #   desc = "Open parent directory with Oil";
+      # }
 
       # Quick inserts
       {
@@ -59,16 +59,16 @@ _: {
       }
 
       # TODO remap on system level
-      {
-        mode = [
-          "n"
-          "v"
-          "l"
-          "t"
-        ];
-        key = "caps";
-        action = "<esc>";
-      }
+      # {
+      #   mode = [
+      #     "n"
+      #     "v"
+      #     "l"
+      #     "t"
+      #   ];
+      #   key = "caps";
+      #   action = "<esc>";
+      # }
 
       # Linebreaks
       {
@@ -115,6 +115,7 @@ _: {
       # Splits
       {
         key = "<leader>sv";
+        mode = "n";
         silent = true;
         action = "<cmd>vsplit<CR>";
         desc = "Split Vertical";
@@ -128,14 +129,14 @@ _: {
       }
 
       # Treesitter
-      {
-        # This command does not exist
-        key = "<leader>tc";
-        mode = "n";
-        silent = true;
-        action = "<cmd>TSContext toggle<CR>";
-        desc = "Toggle the Treesitter context";
-      }
+      # {
+      #   # This command does not exist
+      #   key = "<leader>tc";
+      #   mode = "n";
+      #   silent = true;
+      #   action = "<cmd>TSContext toggle<CR>";
+      #   desc = "Toggle the Treesitter context";
+      # }
 
       # Zen mode
       # {
@@ -187,22 +188,22 @@ _: {
         action = "<cmd>Telescope find_files<CR>";
         desc = "Find Files by name";
       }
-      {
-        # TODO figure this out
-        key = "<leader>fp";
-        mode = "n";
-        silent = true;
-        action = "<cmd>Telescope projects<CR>";
-        desc = "Find Projects";
-      }
-      {
-        # TODO unknown command
-        key = "<leader>fb";
-        mode = "n";
-        silent = true;
-        action = "<cmd>Telescope file_browser<CR>";
-        desc = "File Browser";
-      }
+      # {
+      #   # TODO figure this out
+      #   key = "<leader>fp";
+      #   mode = "n";
+      #   silent = true;
+      #   action = "<cmd>Telescope projects<CR>";
+      #   desc = "Find Projects";
+      # }
+      # {
+      #   # TODO unknown command
+      #   key = "<leader>fb";
+      #   mode = "n";
+      #   silent = true;
+      #   action = "<cmd>Telescope file_browser<CR>";
+      #   desc = "File Browser";
+      # }
       {
         key = "<leader>fg";
         mode = "n";

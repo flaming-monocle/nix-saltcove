@@ -78,11 +78,15 @@ in
           tree -L 2 -P '*.nix'
         };
         nixrs() {
+          echo Temporarily switching working directory to /etc/nixos...
           wd=$(pwd)
           cd /etc/nixos
+          echo Staging changes in Git...
           git add .
           git status
+          echo Rebuilding...
           sudo nixos-rebuild switch --flake
+          echo Rebuilt successfully! Switching back to $wd
           cd $wd
         }
 

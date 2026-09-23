@@ -5,7 +5,7 @@
   imports = [
     ./wayland.nix
     ./nvf/default.nix
-    ./fonts.nix
+    # ./fonts.nix
     ./gaming.nix
   ];
 
@@ -24,12 +24,16 @@
 
     pathsToLink = [
       "/share/applications"
-      "/share/xdg-desktop-portal"
+      # "/share/xdg-desktop-portal"
     ];
     sessionVariables.NIXOS_OZONE_WL = "1"; # Forces Wayland for transparency
     variables.EDITOR = "nvim";
     variables.SUDO_EDITOR = "nvim";
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "pnpm-10.29.2"
+  ];
 
   # Networking
   networking = {

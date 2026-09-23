@@ -29,24 +29,28 @@ in
         nvf.enable = true;
         vim.enable = true;
       };
-      fonts = {
-        serif = {
-          package = pkgs.dejavu_fonts;
-          name = "DejaVu Serif";
-        };
-        sansSerif = {
-          package = pkgs.dejavu_fonts;
-          name = "DejaVu Sans";
-        };
-        monospace = {
-          package = pkgs.dejavu_fonts;
-          name = "JetBrains Mono";
-        };
-        emoji = {
-          package = pkgs.twitter-color-emoji;
-          name = "Twitter Color Emoji";
-        };
-      };
+      # fonts = {
+      #   serif = {
+      #     displayName = "Serif";
+      #     fontName = "DejaVu Serif";
+      #     package = pkgs.dejavu_fonts;
+      #   };
+      #   sansSerif = {
+      #     displayName = "Sans-serif";
+      #     fontName = "DejaVu Sans";
+      #     package = pkgs.dejavu_fonts;
+      #   };
+      #   monospace = {
+      #     displayName = "Monospace";
+      #     fontName = "DejaVu Sans Mono";
+      #     package = pkgs.dejavu_fonts;
+      #   };
+      #   emoji = {
+      #     displayName = "Emoji";
+      #     fontName = "Noto Color Emoji";
+      #     package = "noto-fonts-color-emoji";
+      #   };
+      # };
     }
     #-- Conditional --#
     (mkIf (username == "kobi") {
