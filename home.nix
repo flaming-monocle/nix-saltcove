@@ -29,7 +29,7 @@
     tree
 
     # Monitoring
-    btop
+    nvtopPackages.nvidia
     iotop
     iftop
     lsof

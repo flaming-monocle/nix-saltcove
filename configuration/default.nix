@@ -5,7 +5,7 @@
   imports = [
     ./wayland.nix
     ./nvf/default.nix
-    # ./fonts.nix
+    ./fonts.nix
     ./gaming.nix
   ];
 
@@ -17,7 +17,6 @@
       clang
       vim
       git
-      direnv
       spotify
       # inputs.zen-browser.packages.${pkgs.stenv.hostPlatform.system}.default
     ];
@@ -52,8 +51,16 @@
   security.polkit.enable = true;
 
   # Default Programs
-  programs.dconf.enable = true;
-  programs.firefox.enable = true;
+  programs = {
+    dconf.enable = true;
+    firefox.enable = true;
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
+  };
 
   # Garbage Collection
   nix.gc = {

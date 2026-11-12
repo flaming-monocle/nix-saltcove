@@ -2,10 +2,11 @@
   osConfig,
   lib,
   config,
+  builtins,
   ...
 }:
 let
-  inherit (lib) mkMerge mkIf;
+  inherit (lib) mkMerge mkIf toString;
   inherit (osConfig.networking) hostName;
   inherit (config.lib.stylix) colors;
 
@@ -24,18 +25,17 @@ in
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 20;
         spacing = 4;
         output = mainMonitor;
 
-        modules-left = mkMerge [
-          [
-            "custom/nixos"
-            "clock"
-            "hyprland/workspaces"
-          ]
-          (mkIf (hostName == "snowblack") [ ])
-          (mkIf (hostName == "bifrost") [ ])
+        modules-left = [
+          "custom/nixos"
+          "hyprland/workspaces"
+        ];
+
+        modules-center = [
+          "clock"
         ];
 
         modules-right = mkMerge [
@@ -47,34 +47,33 @@ in
             "pulseaudio"
             "custom/notification"
           ]
-          (mkIf (hostName == "snowblack") [ ])
         ];
 
         "custom/nixos" = {
           format = " ";
           tooltip = false;
-          on-click = "rofi"; # Or your preferred launcher
+          on-click = "rofi";
         };
 
         "hyprland/workspaces" = {
           format = "{name}";
           on-click = "activate";
-          all-outputs = false;
+          all-outputs = true;
           wrap-on-scroll = false;
         };
 
         "backlight" = {
           format = "{icon} {percent}%";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
+            " "
+            " "
+            " "
+            " "
+            " "
+            " "
+            " "
+            " "
+            " "
           ];
         };
 
@@ -109,7 +108,7 @@ in
         };
 
         "pulseaudio" = {
-          format = "{icon} {volume}%";
+          format = " {icon} {volume}%";
           format-muted = "  Muted";
           format-icons = " ";
           on-click = "pavucontrol";
@@ -123,51 +122,64 @@ in
         };
 
         "clock" = {
-          # Pretty sure this is right, but TODO doublecheck
-          format = "󰃭 {%a. %y %m %d %R}";
+          # format = "󰃭 {:%a-%y-%m %d %R}";
+          format = " {:%a. %y-%m-%d %R} ";
           # eg, Sat. 24-04-18 13:44
           tooltip-format = "<tt>{calendar}</tt>";
         };
       };
     };
     # TODO get this integrated with Stylix
+    # CSS:
+    # Elements height:
+    # Margin - 5;
+    # Border - builtin
+    # Padding -
     style = ''
       * {
-        font-family: "JetBrainsMono Nerd Font";
-        font-size: 13px;
-        min-height: 0;
+        font-family: "TeX Gyre Bonum";
+        font-weight: bold;
+        font-size: 10px;
+        min-width: 30px;
+        min-height: 30px;
+      }
+
+      #workspaces buttom, #workspaces button.active, #custom-nixos, #backlight, #battery, #cpu, #memory, #pulseaudio, #clock, #custom-notification {
+        margin: 3px 3px 2px 3px;
+        padding: 0px;
+        border: solid 2px #${toString colors.base06};
+        border-radius: 15px;
+        color: #${toString colors.base00};
+        background: #${toString colors.base04};
       }
 
       window#waybar {
-        background: rgba(26, 27, 38, 0.85);
-        color: #c0caf5;
-        border-bottom: 2px solid rgba(122, 162, 247, 0.5);
+        background: transparent;
       }
 
       #workspaces button {
-        padding: 0 8px;
-        color: #565f89;
+        padding: 0px 1px 0px 1px;
       }
 
-      #workspaces button.focused {
-        color: #7aa2f7;
-        background: rgba(122, 162, 247, 0.1);
+      #workspaces button.active {
+        padding: 0px 1px 0px 1px;
       }
 
       #custom-nixos {
-        color: #7ebae4;
-        padding: 0 15px;
-        font-size: 18px;
+        margin-right: 15px;
+        margin-left: 10px;
+        padding: 0px 0px 0px 2px;
+        border: solid 2px #${toString colors.base0C};
+        border-radius: 50%;
+        color: #${toString colors.base0C};
+        background: transparent;
+        font-size: 10px;
       }
 
-      #cpu, #memory, #pulseaudio, #clock, #custom-notification {
-        padding: 0 10px;
+      #custom-spacer {
+        margin: 0px 5px 0px 0px;
+        padding: 0px;
       }
-
-      #cpu { color: #f7768e; }
-      #memory { color: #9ece6a; }
-      #pulseaudio { color: #e0af68; }
-      #clock { color: #bb9af7; }
     '';
   };
 }

@@ -10,6 +10,8 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "video"
+        "render"
       ];
       initialPassword = "1111";
       shell = pkgs.zsh;
@@ -23,20 +25,22 @@
 
   services = {
     gvfs.enable = true;
-    keyd = {
-      enable = true;
-      keyboards = {
-        # The name is just the name of the configuration file, it does not really matter
-        default = {
-          ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
-          settings = {
-            main.capslock = "layer(control)"; # may need quotes if contains non-alphabet symbols
-            otherlayer = { };
-          };
-          extraConfig = ""; # any extra-config, e.g. copy/pasted config, just remove ids part
-        };
-      };
-    };
+    ## Switching caps and ctrl seems worth it,
+    ## But I have to figure out how to do so
+    # keyd = {
+    #   enable = true;
+    #   keyboards = {
+    #     # The name is just the name of the configuration file, it does not really matter
+    #     default = {
+    #       ids = [ "*" ]; # what goes into the [id] section, here we select all keyboards
+    #       settings = {
+    #         main.capslock = "layer(control)"; # may need quotes if contains non-alphabet symbols
+    #         otherlayer = { };
+    #       };
+    #       extraConfig = ""; # any extra-config, e.g. copy/pasted config, just remove ids part
+    #     };
+    #   };
+    # };
   };
 
   home-manager = {
@@ -47,7 +51,8 @@
           ./../home.nix
 
           ## Function
-          #./../homeModules/font-manager.nix
+          ./../homeModules/font-manager.nix
+          ./../homeModules/btop.nix
           ./../homeModules/gaming.nix
           ./../homeModules/git.nix
           ./../homeModules/waylandDesktop/hyprland-unstable.nix
@@ -55,7 +60,7 @@
           ./../homeModules/hyprpolkit.nix
           ./../homeModules/kitty.nix
           ./../homeModules/math.nix
-          # ./../homeModules/libreoffice.nix
+          ./../homeModules/libreoffice.nix
           ./../homeModules/rofi.nix
           ./../homeModules/starship.nix
           stylix.homeModules.stylix
@@ -74,11 +79,12 @@
           ./../homeModules/obsidian.nix
 
           ## Connection
-          # ./../homeModules/vesktop.nix
+          ./../homeModules/discord.nix
           ./../homeModules/thunderbird.nix
           # ./../homeModules/transmission.nix
 
           ## Archived
+          # ./../homeModules/vesktop.nix
           # ./../homeModules/minitube.nix
           # ./../homeModules/reaper.nix
           # ./../homeModules/shotcut.nix
