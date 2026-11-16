@@ -267,13 +267,13 @@ in
             fullscreen_on_one_column = true;
           };
           # TODO up and down both register as up
-          gesture = [
-            "3, left, layoutmsg, focus l"
-            "3, down, workspace, m+1"
-            "3, up, workspace, m-1"
-            "3, right, layoutmsg, focus r"
-            # "3, vertical, workspace"
-          ];
+          # gesture = [
+          #   "3, left, layoutmsg, focus l"
+          #   "3, down, workspace, m+1"
+          #   "3, up, workspace, m-1"
+          #   "3, right, layoutmsg, focus r"
+          #   # "3, vertical, workspace"
+          # ];
           # workspace_swipe_invert = false;
         })
       ];

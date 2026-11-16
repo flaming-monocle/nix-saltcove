@@ -2,7 +2,6 @@
   osConfig,
   lib,
   config,
-  builtins,
   ...
 }:
 let
@@ -139,18 +138,18 @@ in
       * {
         font-family: "TeX Gyre Bonum";
         font-weight: bold;
-        font-size: 10px;
+        font-size: 17px;
         min-width: 30px;
         min-height: 30px;
       }
 
       #workspaces buttom, #workspaces button.active, #custom-nixos, #backlight, #battery, #cpu, #memory, #pulseaudio, #clock, #custom-notification {
         margin: 3px 3px 2px 3px;
-        padding: 0px;
+        padding: 0px 3px;
         border: solid 2px #${toString colors.base06};
-        border-radius: 15px;
+        border-radius: 20px;
         color: #${toString colors.base00};
-        background: #${toString colors.base04};
+        background: #${toString colors.base05};
       }
 
       window#waybar {

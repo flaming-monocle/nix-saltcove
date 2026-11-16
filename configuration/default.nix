@@ -18,6 +18,7 @@
       vim
       git
       spotify
+      webcord
       # inputs.zen-browser.packages.${pkgs.stenv.hostPlatform.system}.default
     ];
 
